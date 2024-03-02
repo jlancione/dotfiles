@@ -1,0 +1,25 @@
+lista di cose che nn mi interessano (tipicamente plugins)
+slides
+sessions (sarà che nn ho capito ma nn mi pare fondamentale…)
+autolist (a meno che qlc1 nn me ne spieghi l'utilità)
+
+cose a bassa priorità
+which-key
+yanky
+toggleterm (nn che sia fondamentale ma magari finché nn metto 1 wm può aver senso)
+surround
+alpha
+
+cose con discreta priorità
+nvim tree (file explorer)
+nvim web icons (sono i nerd fonts per nvim tree)
+firenvim (per usare nvim ovnq)
+
+cose che meritano 1 occhiata
+nvim-orgmode (se nn ricordo male i file org sono qli di emacs che sono tipo jupiter notebook…)
+
+
+
+keymaps
+in keympas.lua e handlers.lua 
+h come h nn stanno andando qli con il modifier A (che sarà ben la alt key no?)
