@@ -1,18 +1,197 @@
 [shell]
 program = "/opt/homebrew/bin/fish"
+# args = ["string",] # arguments to be passed to the shell
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+# dt theme (cold colors, mostly blues)
+# black = "#5b6268"
+# blue = "#3071db"
+# cyan = "#46d9ff"
+# green = "#4db5bd"
+# magenta = "#a9a1e1"
+# red = "#da8548"
+# white = "#dfdfdf"
+# yellow = "#ecbe7b"
+
+# benbrast theme
+black = "#5c6370"
+red = "#e06c75"
+green = "#98c379"
+yellow = "#d19a66"
+blue = "#61afef"
+magenta = "#c678dd"
+cyan = "#56b6c2"
+white = "#ECEFF4"
+
+[colors.cursor]
+cursor = "#528bff"
+text = "CellBackground"
+
+[colors.normal]
+# dt theme (cold colors, mostly blues)
+# black = "#1c1f24"
+# blue = "#51afef"
+# cyan = "#5699af"
+# green = "#98be65"
+# magenta = "#c678dd"
+# red = "#ff6c6b"
+# white = "#abb2bf"
+# yellow = "#da8548"
+
+# benbrast theme
+black = "#3B4252"
+red = "#BF616A"
+green = "#A3BE8C"
+yellow = "#EBCB8B"
+blue = "#81A1C1"
+magenta = "#B48EAD"
+cyan = "#88C0D0"
+white = "#abb2bf"
+
+
+[colors.primary]
+# dt theme (cold colors, mostly blues)
+# background = "#282c34"
+# foreground = "#bbc2cf"
+
+# benbrast theme
+background= "#1e2127"
+# background= "#2E3440"
+foreground= "#D8DEE9"
+
+[colors.selection]
+background = "#3e4451"
+text = "CellForeground"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 13.0
+
+[font.bold]
+family = "JetBrainsMono Nerd Font"
+# family = "Maple Mono"
+style = "Bold"
+
+[font.bold_italic]
+family = "JetBrainsMono Nerd Font"
+# family = "Maple Mono" 
+style = "Bold Italic"
+
+[font.italic]
+family = "JetBrainsMono Nerd Font"
+# family = "Maple Mono"
+style = "Italic"
 
 [font.normal]
 family = "JetBrainsMono Nerd Font"
+# family = "Maple Mono"
 style = "Regular"
 
-[font.bold]
-family = "JetBrainsMono Nerd font"
-style = "Bold"
+[font.offset]
+x = 0
+y = 1
 
-[font.italic]
-family = "JetBrainsMono Nerd font"
-style = "Italic"
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control|Shift"
 
-[font.bold_italic]
-family = "JetBrainsMono Nerd font"
-style = "Bold Italic"
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "PasteSelection"
+key = "Insert"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Key0"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Equals"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Plus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Minus"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = "F11"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "Paste"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "Copy"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "ClearLogNotice"
+key = "L"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\f"
+key = "L"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ScrollPageUp"
+key = "PageUp"
+mode = "~Alt"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "ScrollPageDown"
+key = "PageDown"
+mode = "~Alt"
+mods = "None"
+
+[[keyboard.bindings]]
+action = "ScrollToTop"
+key = "Home"
+mode = "~Alt"
+mods = "Shift"
+
+[[keyboard.bindings]]
+action = "ScrollToBottom"
+key = "End"
+mode = "~Alt"
+mods = "Shift"
+
+[scrolling]
+history = 5000
+
+[window]
+dynamic_padding = false
+opacity = 0.97
+title = "Alacritty"
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[window.padding]
+x = 6
+y = 3
