@@ -40,10 +40,13 @@
   - [ ] tab management
   - [ ] markdown
 
+- [ ] inserting a space after a `{}` puts also a space after the cursor (it's annoying)
+      
 - [ ] impara vim :)
 - [ ] impara git https://git-scm.com/doc
 
 - [ ] out of context: inizializza i maxi vecchi
 - [ ] zathura?
+
 
       
