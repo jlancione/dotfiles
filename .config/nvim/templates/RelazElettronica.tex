@@ -1,0 +1,125 @@
+\documentclass[a4paper,notitlepage,10pt]{article}
+
+\usepackage[T1]{fontenc} 
+\usepackage[utf8]{inputenc} 
+\usepackage[italian]{babel}
+\usepackage{microtype}
+
+\usepackage[a4paper,top=3cm,bottom=3cm,left=2.5cm,right=2.5cm,%
+heightrounded,bindingoffset=5mm]{geometry}
+
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+\sisetup{
+separate-uncertainty,
+separate-uncertainty-units = bracket}
+
+\usepackage{graphicx}	% provides \includegraphics e \resizebox
+% \graphicspath{{./immagini_J}}
+\usepackage{caption}
+% \captionsetup{tableposition=top, figureposition=bottom, font=small, format=hang, labelfont=bf} 
+\usepackage{subfig}		% requires caption
+
+\usepackage{floatrow}
+% \floatsetup[table]{style=plaintop} % altrim mette le caption dle table in basso (nonostante il setup di caption)
+\newfloatcommand{capbtabbox}{table}[][\FBwidth] % Table float box with bottom caption, box width adjusted to content
+
+\usepackage{booktabs}
+
+
+
+\begin{document}
+%\numberwithin{equation}{section} %Per numerare equazioni 
+
+% due righe sullo scopo dell'esperienza/misura
+
+\section{Strumentazione e componenti}
+
+\section[Procedura]{Procedura e discussione della misura}
+
+\section{Osservazioni}
+
+
+
+
+
+\end{document}
+
+
+% Per inserire una MISURA
+\SI{12.4(13)e2}{\milli\volt} dà $(12.4\pm1.3) \times 10^{2} mV$
+
+
+
+% Per affiancare DUE FIGURE, si può mettere una caption globale
+\begin{figure}[htbp]
+\centering
+	\subfloat[][Example specific caption %\label{fig:example_label}
+	]{
+	\resizebox{.45\textwidth}{!}{
+   \includegraphics{file_name} % nome dell'immagine
+%   \includegraphics{Jacopo/immagini_J/file_name} % per overleaf
+	}}\qquad
+	\subfloat[][Example specific caption %\label{fig:example_label}
+	]{
+	\resizebox{.45\textwidth}{!}{
+   \includegraphics{file_name} % nome dell'immagine
+%   \includegraphics{Jacopo/immagini_J/file_name} % per overleaf
+	}}
+	\caption{Example global caption} 
+%	\label{fig:example_global_label}
+\end{figure}
+
+
+
+
+% Per affiancare DUE FIGURE con caption distinte
+\begin{figure}[htbp]
+\begin{floatrow}
+   \centering
+   \ffigbox{%
+\resizebox{.45\textwidth}{!}{ 
+   \includegraphics{file_name} % da modificare
+%   \includegraphics{Jacopo/immagini_J/file_name} % per overleaf
+   }}{%
+   \caption{Example caption}
+%.  \label{fig:example_label}
+}\quad
+\ffigbox{%
+\resizebox{.45\textwidth}{!}{
+   \includegraphics{file_name} % da modificare
+%   \includegraphics{Jacopo/immagini_J/file_name} % per overleaf
+   }}{%
+   \caption{Example caption}
+%   \label{fig:example_label}
+   }
+\end{floatrow}
+\end{figure}
+
+
+
+
+% Per le TABELLE
+\begin{table}[htbp]
+  \begin{tabular}{
+	S[table-format = 1.2(2)]  
+	S[table-format = 2.1(1)e1]} 
+ % Qua si sta specificando il formato dei numeri che andremo a inserire in ciascuna colonna della tabella. A destra del punto è indicato il massimo numero di cifre dopo la virgola di cui abbiamo bisogno, in parentesi il numero di cifre dell'errore. Prima del punto invece è segnato il massimo numero di cifre della parte intera di quelli che inseriremo. Nella seconda colonna  e1 serve a dirgli che avremo bisogno della notazione esponenziale
+			
+ \toprule
+{$f$ $[\unit{\hertz}]$} & {$v_{\textup{s}}$} \\ % le graffe sono necessarie!
+	
+ \midrule
+1.23(4)	 & 13.8(4)e5 \\
+% Questo è uguale a:  1.23 \pm 0.04 & (13.8 \pm 0.4) \times 10^5 \\
+    
+ \bottomrule
+\end{tabular}
+\caption{Example caption}
+\label{tab:example_label}
+\end{table}
+
+
+
+
+% Ultimo consiglio spassionato: lasciamo [htbp], non forziamolo a mettere figure e tabelle dove vogliamo, ci pensiamo alla fine se non ci piace quello che ci sputa fuori sul documento finale

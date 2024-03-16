@@ -40,7 +40,8 @@
   - [ ] tab management
   - [ ] markdown
 
-- [ ] inserting a space after a `{}` puts also a space after the cursor (it's annoying)
+- [x] inserting a space after a `{}` puts also a space after the cursor (it's annoying)
+- [ ] keybindings with alt key are all taken by mac defaults, is there a way out?
       
 - [ ] impara vim :)
 - [ ] impara git https://git-scm.com/doc

@@ -109,7 +109,8 @@ alias config='/opt/homebrew/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 # colorscript random
 
 # nuke-dash/pokemon-colorscripts-mac
-pokemon-colorscripts --random --no-title
+# pokemon-colorscripts --random --no-title
+clr
 
 ### SETTING THE STARSHIP PROMPT ###
 starship init fish | source

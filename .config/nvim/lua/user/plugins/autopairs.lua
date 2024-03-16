@@ -23,6 +23,18 @@ return {
       enable_moveright = true,
       ignored_next_char = "",
       enable_check_bracket_line = true, --- check bracket in same line
+      fast_wrap = {
+        map = "<c-`>",
+        chars = { "{", "[", "(", '"', "'" },
+        pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
+        offset = 0, -- Offset from pattern match
+        end_key = "$",
+        -- keys = "qwertyuiopzxcvbnmasdfghjkl",
+        keys = "pyfgcrlqjkxbmwvzaoeuidhtns",
+        check_comma = true,
+        highlight = "PmenuSel",
+        highlight_grey = "LineNr",
+    },
     })
 
     local Rule = require 'nvim-autopairs.rule'
@@ -44,21 +56,22 @@ return {
             local context = opts.line:sub(col - 1, col + 2)
             return vim.tbl_contains({ '$  $', '(  )', '{  }', '[  ]', '<  >' }, context)
           end),
-      Rule("$ ", " ", "tex")
-          :with_pair(cond.not_after_regex(" "))
-          :with_del(cond.none()),
-      Rule("[ ", " ", "tex")
-          :with_pair(cond.not_after_regex(" "))
-          :with_del(cond.none()),
-      Rule("{ ", " ", "tex")
-          :with_pair(cond.not_after_regex(" "))
-          :with_del(cond.none()),
-      Rule("( ", " ", "tex")
-          :with_pair(cond.not_after_regex(" "))
-          :with_del(cond.none()),
-      Rule("< ", " ", "tex")
-          :with_pair(cond.not_after_regex(" "))
-          :with_del(cond.none()),
+      --    Per qualche ragione le righe qua sotto fanno in modo che qnd chiudo $ ) } ] mi aggiunga uno spazio a dx… nn capisco davvero pké dovrei volere 1 cosa così
+--    Rule("$ ", " ", "tex")
+--        :with_pair(cond.not_after_regex(" "))
+--        :with_del(cond.none()),
+--    Rule("[ ", " ", "tex")
+--        :with_pair(cond.not_after_regex(" "))
+--        :with_del(cond.none()),
+--    Rule("{ ", " ", "tex")
+--        :with_pair(cond.not_after_regex(" "))
+--        :with_del(cond.none()),
+--    Rule("( ", " ", "tex")
+--        :with_pair(cond.not_after_regex(" "))
+--        :with_del(cond.none()),
+--    Rule("< ", " ", "tex")
+--        :with_pair(cond.not_after_regex(" "))
+--        :with_del(cond.none()),
     })
 
     autopairs.get_rule('$'):with_move(function(opts)
@@ -66,7 +79,10 @@ return {
     end)
 
     -- import nvim-cmp plugin (completions plugin)
-    local cmp = require("cmp")
+    local cmp_status_ok, cmp = pcall(require, "cmp")
+    if not cmp_status_ok then
+      return
+    end
 
     -- import nvim-autopairs completion functionality
     local cmp_autopairs = require("nvim-autopairs.completion.cmp")
