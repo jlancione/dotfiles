@@ -17,7 +17,7 @@ return {
 
       -- custom mappings
       local keymap = vim.keymap -- for conciseness
-      keymap.set('n', '<CR>', api.node.open.tab, opts('Open'))
+      keymap.set('n', '<CR>', api.node.open.edit, opts('Open'))
       keymap.set('n', '<S-M>', api.node.show_info_popup, opts('Info'))
       keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
       keymap.set('n', 'l', api.node.open.edit, opts('Open'))

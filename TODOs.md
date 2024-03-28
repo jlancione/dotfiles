@@ -1,7 +1,7 @@
 # TODOs
 
 - [ ] Templates
-  - [ ]  guardare da ben (keymaps e come fa)
+  - [x]  guardare da ben (keymaps e come fa)
 
 - [ ] Snippet
   - [ ] come triggerarli (e fare in modo che sia sensato)
@@ -28,16 +28,15 @@
 - [ ] plugins
   - [ ] add pcalls (with prints!) for troubleshooting
   - [ ] comment
-  - [ ] rainbow parenteses
+  - [ ] rainbow parentheses
   - [ ] hard time
-  - [ ] firenvim
   - [ ] surround
   - [ ] sessions
   - [ ] togli qlo che nn ti serve/inutile/bloated
   - [ ] telescope extensions (immag e video)
   - [ ] coc for smart autocompletion?
   - [ ] lualine/powerline
-  - [ ] tab management
+  - [ ] tab management (is it necessary?)
   - [ ] markdown
 
 - [x] inserting a space after a `{}` puts also a space after the cursor (it's annoying)
