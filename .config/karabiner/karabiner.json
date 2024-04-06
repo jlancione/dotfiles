@@ -3,7 +3,7 @@
         "ask_for_confirmation_before_quitting": true,
         "check_for_updates_on_startup": true,
         "show_in_menu_bar": true,
-        "show_profile_name_in_menu_bar": false,
+        "show_profile_name_in_menu_bar": true,
         "unsafe_ui": false
     },
     "profiles": [
@@ -169,6 +169,132 @@
                     {
                         "description": "o Launcher",
                         "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "launcher_mode_v4",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "y",
+                                    "modifiers": {
+                                        "mandatory": []
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open -a 'finder.app'"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": []
+                                    },
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "s"
+                                        },
+                                        {
+                                            "key_code": "y"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "key_up_order": "strict_inverse",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "launcher_mode_v4",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 500
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "launcher_mode_v4",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "shell_command": "open -a 'finder.app'"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "launcher_mode_v4",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "i",
+                                    "modifiers": {
+                                        "mandatory": []
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "shell_command": "open -a 'Calendar.app'"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "modifiers": {
+                                        "mandatory": []
+                                    },
+                                    "simultaneous": [
+                                        {
+                                            "key_code": "s"
+                                        },
+                                        {
+                                            "key_code": "i"
+                                        }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "key_up_order": "strict_inverse",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "launcher_mode_v4",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "parameters": {
+                                    "basic.simultaneous_threshold_milliseconds": 500
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "launcher_mode_v4",
+                                            "value": 1
+                                        }
+                                    },
+                                    {
+                                        "shell_command": "open -a 'Calendar.app'"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
                             {
                                 "conditions": [
                                     {
@@ -487,11 +613,15 @@
                         ]
                     },
                     {
-                        "description": "Shifts Move Forward and Backward by 1 word",
+                        "description": "Shifts Move Forward and Backward by 1 word, to the end of line if held",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "right_shift"
+                                },
+                                "parameters": {
+                                    "basic.to_if_alone_timeout_milliseconds": 250,
+                                    "basic.to_if_held_down_threshold_milliseconds": 250
                                 },
                                 "to": [
                                     {
@@ -506,11 +636,23 @@
                                         ]
                                     }
                                 ],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "command"
+                                        ]
+                                    }
+                                ],
                                 "type": "basic"
                             },
                             {
                                 "from": {
                                     "key_code": "left_shift"
+                                },
+                                "parameters": {
+                                    "basic.to_if_alone_timeout_milliseconds": 250,
+                                    "basic.to_if_held_down_threshold_milliseconds": 250
                                 },
                                 "to": [
                                     {
@@ -522,6 +664,14 @@
                                         "key_code": "left_arrow",
                                         "modifiers": [
                                             "option"
+                                        ]
+                                    }
+                                ],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "command"
                                         ]
                                     }
                                 ],
@@ -943,7 +1093,7 @@
                     ]
                 }
             ],
-            "name": "Default profile",
+            "name": "Wizard",
             "parameters": {
                 "delay_milliseconds_before_open_device": 1000
             },
