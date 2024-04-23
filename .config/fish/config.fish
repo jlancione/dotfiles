@@ -102,6 +102,8 @@ alias vim='nvim'
 
 alias skim='/Applications/Skim.app/Contents/MacOS/Skim'
 alias config='/opt/homebrew/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+# to launch the venv for python in Mac (all because of homebrew)
+alias pyenv='python3 -m venv ~/Documents/tesi/pyvenv; source ~/Documents/tesi/pyvenv/bin/activate.fish'
 
 ### RANDOM COLOR SCRIPT ###
 # Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
