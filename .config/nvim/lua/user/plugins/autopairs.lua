@@ -29,6 +29,7 @@ return {
         pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
         offset = 0, -- Offset from pattern match
         end_key = "$",
+        curs_pos_before = false,
         -- keys = "qwertyuiopzxcvbnmasdfghjkl",
         keys = "pyfgcrlqjkxbmwvzaoeuidhtns",
         check_comma = true,
