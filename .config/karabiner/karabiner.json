@@ -613,15 +613,14 @@
                         ]
                     },
                     {
-                        "description": "Shifts Move Forward and Backward by 1 word, to the end of line if held",
+                        "description": "Shifts Move Forward and Backward by 1 word",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "right_shift"
                                 },
                                 "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 250,
-                                    "basic.to_if_held_down_threshold_milliseconds": 250
+                                    "basic.to_if_alone_timeout_milliseconds": 300
                                 },
                                 "to": [
                                     {
@@ -636,14 +635,6 @@
                                         ]
                                     }
                                 ],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "right_arrow",
-                                        "modifiers": [
-                                            "command"
-                                        ]
-                                    }
-                                ],
                                 "type": "basic"
                             },
                             {
@@ -651,8 +642,7 @@
                                     "key_code": "left_shift"
                                 },
                                 "parameters": {
-                                    "basic.to_if_alone_timeout_milliseconds": 250,
-                                    "basic.to_if_held_down_threshold_milliseconds": 250
+                                    "basic.to_if_alone_timeout_milliseconds": 300
                                 },
                                 "to": [
                                     {
@@ -664,14 +654,6 @@
                                         "key_code": "left_arrow",
                                         "modifiers": [
                                             "option"
-                                        ]
-                                    }
-                                ],
-                                "to_if_held_down": [
-                                    {
-                                        "key_code": "left_arrow",
-                                        "modifiers": [
-                                            "command"
                                         ]
                                     }
                                 ],
