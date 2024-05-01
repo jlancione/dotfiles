@@ -25,11 +25,11 @@ return {
       enable_check_bracket_line = true, --- check bracket in same line
       fast_wrap = {
         map = "<C-S-w>",
-        chars = { "{", "[", "(", '"', "'" },
+        chars = { "{", "[", "(", '"', "'", "$"},
         pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
         offset = 0, -- Offset from pattern match
         end_key = "$",
-        curs_pos_before = false,
+        curs_pos_before = true,
         -- keys = "qwertyuiopzxcvbnmasdfghjkl",
         keys = "pyfgcrlqjkxbmwvzaoeuidhtns",
         check_comma = true,
