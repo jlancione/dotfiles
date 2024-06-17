@@ -18,7 +18,7 @@ return {
         "texlab",
       }
 
-      vim.lsp.set_log_level("debug")
+      vim.lsp.set_log_level("off") -- turn it to "debug" for debugging, otherwise LspLog grows uncontrollably
 
       local settings = {
         ui = {
