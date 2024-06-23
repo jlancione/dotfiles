@@ -12,9 +12,9 @@
 - [ ] controllare l'integrazione con zotero (e telescope)
 
 - [ ] formatting (null_ls)
-- [ ] git integration
-  - [ ] lazygit
-  - [ ] gitsigns
+- [x] git integration
+  - [x] neogit
+  - [ ] gitsigns?
 
 - [ ] add cheatsheet
 - [ ] check keymaps
@@ -33,9 +33,8 @@
   - [ ] surround
   - [ ] sessions
   - [ ] togli qlo che nn ti serve/inutile/bloated
-  - [ ] telescope extensions (immag e video)
   - [ ] coc for smart autocompletion?
-  - [ ] lualine/powerline
+  - [x] lualine/powerline -> feline (to be configured)
   - [ ] tab management (is it necessary?)
   - [ ] markdown
 
@@ -45,7 +44,7 @@
 - [ ] impara vim :)
 - [ ] impara git https://git-scm.com/doc
 
-- [ ] out of context: inizializza i maxi vecchi
+- [x] out of context: inizializza i maxi vecchi
 - [ ] zathura?
 
 
