@@ -13,7 +13,7 @@ return {
       check_ts = true,                      -- enable treesitter
       ts_config = {
         lua = { "string" },                 -- don't add pairs in lua string treesitter nodes
-        javascript = { "template_string" }, -- don't add pairs in javscript template_string treesitter nodes
+        javascript = { "template_string" }, -- don't add pairs in javascript template_string treesitter nodes
         -- javascript = { "string", "template_string" },
         java = false,                       -- don't check treesitter on java
       },
@@ -43,7 +43,7 @@ return {
     local cond = require 'nvim-autopairs.conds'
 
     autopairs.add_rules({
-      Rule("`", "'", "tex"),
+--    Rule("`", "'", "tex"),
       Rule("$", "$", "tex"),
       Rule(' ', ' ')
           :with_pair(function(opts)
