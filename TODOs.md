@@ -9,7 +9,7 @@
   - [ ] ridondanze con lsp si può fare qlcosa? (è davvero utile il cmp dagli lsp per latex?)
   - [ ] `^{}` e `_{}` e `\textup{}` che se no impazziamo
       
-- [ ] controllare l'integrazione con zotero (e telescope)
+- [x] controllare l'integrazione con zotero (e telescope)
 
 - [ ] formatting (null_ls)
 - [x] git integration
