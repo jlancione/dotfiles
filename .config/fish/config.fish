@@ -103,7 +103,14 @@ alias vim='nvim'
 alias skim='/Applications/Skim.app/Contents/MacOS/Skim'
 alias config='/opt/homebrew/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 # to launch the venv for python in Mac (all because of homebrew)
-alias pyenv='python3 -m venv ~/Documents/tesi/pyvenv; source ~/Documents/tesi/pyvenv/bin/activate.fish'
+alias pyenv='python3 -m venv ~/Documents/tesi/Pyvenv; source ~/Documents/tesi/Pyvenv/bin/activate.fish'
+
+alias rm='rm -i' # for safety reasons
+function flatten # flatten pdf
+  # qua si potrebbe aggiungere un automatismo: fornire un solo argomento e avere direttamente come nome dl'output qlo dl'input-flat
+  gs -dSAFER -dBATCH -dNOPAUSE -dNOCACHE -sDEVICE=pdfwrite -dPreserveAnnots=false \
+     -sOutputFile=$argv[2] $argv[1]
+end
 
 ### RANDOM COLOR SCRIPT ###
 # Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
