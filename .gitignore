@@ -1,2 +1,4 @@
 # ignore finder config files
 .DS_Store
+
+lazy-lock.json
