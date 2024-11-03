@@ -103,7 +103,8 @@ alias vim='nvim'
 alias skim='/Applications/Skim.app/Contents/MacOS/Skim'
 alias config='/opt/homebrew/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 # to launch the venv for python in Mac (all because of homebrew)
-alias pyenv='python3 -m venv ~/Documents/tesi/Pyvenv; source ~/Documents/tesi/Pyvenv/bin/activate.fish'
+# to create a virtual env run: python<version> -m venv <path/to/venv>
+alias pyenv='source ~/Pyvenv/bin/activate.fish'
 
 alias rm='rm -i' # for safety reasons
 function flatten # flatten pdf
