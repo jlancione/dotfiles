@@ -185,8 +185,9 @@ history = 5000
 
 [window]
 dynamic_padding = false
-opacity = 0.97
+opacity = 0.92
 title = "Alacritty"
+decorations = "Buttonless" # options are: full/transparent/buttonless/none
 
 [window.class]
 general = "Alacritty"
