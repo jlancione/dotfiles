@@ -4,12 +4,13 @@ return {
   config = function()
 
     local branch = {'branch', icon = {''}}
+		local lazy_status = require("lazy.status") -- to configure lazy pending updates count
 
     require('lualine').setup {
       options = {
         icons_enabled = true,
         theme = 'auto',
-        component_separators = { left = '', right = ''},
+        component_separators = { left = ' ', right = ''}, --   
         section_separators = { left = '', right = ''},
         disabled_filetypes = {
           statusline = {},
@@ -27,11 +28,13 @@ return {
       },
       sections = {
         lualine_a = {'mode'},
-        lualine_b = {branch, 'diff'},
+        lualine_b = { branch, 'diff'},
         lualine_c = {'filename', 'diagnostics'},
         lualine_x = {'filetype'}, -- 'encoding', 'fileformat', 
-        lualine_y = {'progress'},
-        lualine_z = {'location'}
+        lualine_y = {'location', 'progress'},
+        lualine_z = {
+          {'datetime', style = '%H:%M'}
+        }
       },
       inactive_sections = {
         lualine_a = {'filename'},
@@ -42,7 +45,14 @@ return {
         lualine_z = {}
       },
       tabline = {
-        lualine_a = {} -- to remove filename from top of the screen
+        lualine_a = {}, -- to remove filename from top of the screen
+        lualine_x = {
+					{
+						lazy_status.updates,
+						cond = lazy_status.has_updates,
+--				color = { fg = "#ff9e64" },
+					},
+        }
       },
       winbar = {},
       inactive_winbar = {},
