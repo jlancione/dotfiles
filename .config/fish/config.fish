@@ -7,12 +7,14 @@
 fish_add_path /opt/homebrew/bin
 fish_add_path /Library/TeX/texbin
 fish_add_path /usr/local/bin/ 
+fish_add_path /Users/jacopolancione/Documents/Uni/Algoritmi/gPLUTO/
 
 ### EXPORT ###
 set fish_greeting                                 # Supresses fish's intro message
 set TERM "xterm-256color"                         # Sets the terminal type
 # set EDITOR "emacsclient -t -a ''"                 # $EDITOR use Emacs in terminal
 # set VISUAL "emacsclient -c -a emacs"              # $VISUAL use Emacs in GUI mode
+set PLUTO_DIR $HOME/Documents/Uni/Algoritmi/gPLUTO/
 
 ### SET EITHER DEFAULT EMACS MODE OR VI MODE ###
 function fish_user_key_bindings
@@ -86,6 +88,14 @@ function __history_previous_command_arguments
   end
 end
 
+# function to flatten pdf (add annotations to pdf stream)
+function flatten 
+  # qua si potrebbe aggiungere un automatismo: fornire un solo argomento e avere direttamente come nome dl'output qlo dl'input-flat
+  gs -dSAFER -dBATCH -dNOPAUSE -dNOCACHE -sDEVICE=pdfwrite -dPreserveAnnots=false \
+     -sOutputFile=$argv[2] $argv[1]
+end
+
+
 # The bindings for !! and !$
 if [ "$fish_key_bindings" = "fish_vi_key_bindings" ];
   bind -Minsert ! __history_previous_command
@@ -97,21 +107,21 @@ end
 
 ### ALIASES ###
 alias clr='clear; echo; echo; seq 1 (tput cols) | sort -R | spark | lolcat; echo'
-
-alias vim='nvim'
-
 alias skim='/Applications/Skim.app/Contents/MacOS/Skim'
 alias config='/opt/homebrew/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+
 # to launch the venv for python in Mac (all because of homebrew)
-# to create a virtual env run: python<version> -m venv <path/to/venv>
+# to create a virtual env run:   python<version> -m venv path/to/venv
 alias pyenv='source ~/Pyvenv/bin/activate.fish'
 
 alias rm='rm -i' # for safety reasons
-function flatten # flatten pdf
-  # qua si potrebbe aggiungere un automatismo: fornire un solo argomento e avere direttamente come nome dl'output qlo dl'input-flat
-  gs -dSAFER -dBATCH -dNOPAUSE -dNOCACHE -sDEVICE=pdfwrite -dPreserveAnnots=false \
-     -sOutputFile=$argv[2] $argv[1]
-end
+
+alias ls='eza --color=always --long --git'
+alias ll='eza --color=always --long --tree --level=2 --git'
+alias la='eza -a --color=always --long --git'
+
+# for FZF keybindings
+fzf --fish | source
 
 ### RANDOM COLOR SCRIPT ###
 # Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
