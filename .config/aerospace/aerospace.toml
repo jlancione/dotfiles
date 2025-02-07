@@ -9,7 +9,8 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = ['exec-and-forget borders']
+after-startup-command = ['exec-and-forget borders',
+                         'exec-and-forget osascript ~/.config/thunderbird_launcher.applescript']
 
 # Start AeroSpace at login
 start-at-login = true
@@ -130,6 +131,7 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-b = 'workspace B'
     alt-shift-s = 'workspace S'
     alt-shift-t = 'workspace T'
+    alt-shift-u = 'workspace U'
 
     alt-shift-m = 'fullscreen'
 
@@ -147,11 +149,21 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-ctrl-b = 'move-node-to-workspace B'
     alt-shift-ctrl-s = 'move-node-to-workspace S'
     alt-shift-ctrl-t = 'move-node-to-workspace T'
+    alt-shift-ctrl-u = 'move-node-to-workspace U'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-#   alt-tab = 'workspace-back-and-forth'
+    alt-shift-slash = 'workspace-back-and-forth'
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 #   alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+# APP LAUNCHER
+#   alt-t = 'exec-and-forget open -a /Applications/Alacritty.app'
+#   alt-b = 'exec-and-forget open -a /Applications/Google Chrome.app'
+#   alt-s = 'exec-and-forget open -a /Applications/Spotify.app'
+#   alt-m = 'exec-and-forget open -a /Applications/Thunderbird.app'
+#   alt-w = 'exec-and-forget open -a /Applications/WhatsApp.app'
+#   alt-f = 'exec-and-forget open -a "finder.app"'
+#   alt-c = 'exec-and-forget open -a "calendar.app"'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     alt-shift-space = 'mode service'
@@ -176,7 +188,7 @@ automatically-unhide-macos-hidden-apps = false
     up = 'volume up'
     shift-down = ['volume set 0', 'mode main']
 
-# Callbacks, use: aerospace list-apps, to know the ids of the apps running
+# CALLBACKS, use: aerospace list-apps, to know the ids of the apps running
 [[on-window-detected]]
 if.app-id = 'org.alacritty'
 run = 'move-node-to-workspace T'
@@ -191,4 +203,8 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
-run = ['layout floating','move-node-to-workspace B']
+run = ['layout floating','move-node-to-workspace U']
+
+[[on-window-detected]]
+if.app-id = 'org.mozilla.thunderbird'
+run = 'move-node-to-workspace U'
