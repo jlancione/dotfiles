@@ -130,7 +130,8 @@ fzf --fish | source
 
 # nuke-dash/pokemon-colorscripts-mac
 # pokemon-colorscripts --random --no-title
-clr
+# clr
+fastfetch -c ~/.config/fastfetch/config.jsonc
 
 ### SETTING THE STARSHIP PROMPT ###
 starship init fish | source
