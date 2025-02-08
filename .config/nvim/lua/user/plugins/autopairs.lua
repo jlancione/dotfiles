@@ -24,7 +24,7 @@ return {
       ignored_next_char = "",
       enable_check_bracket_line = true, --- check bracket in same line
       fast_wrap = {
-        map = "<C-S-w>",
+        map = "<A-w>",
         chars = { "{", "[", "(", '"', "'", "$"},
         pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
         offset = 0, -- Offset from pattern match
