@@ -8,6 +8,7 @@
   },
   "modules": [
     "break",
+    "break",
     "title",
     "break",
     "os",
@@ -30,6 +31,5 @@
     "break",
     "colors",
     "break",
-    "break"
   ]
 }
