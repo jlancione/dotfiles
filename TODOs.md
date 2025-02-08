@@ -3,16 +3,15 @@
 - Priorities
 
     - [ ] fix lsp and the like (linters? formatters?) -> understand them!
-    - [x] change to aerospace (discard amethyst)
     - [ ] impara Telescope (sostituisce nvim tree e lo usi anche per muoverti tra i buffers)
-    - [ ] check keymaps and solve confilcts
-    - [ ] add commit and push everything new
+    - [ ] check keymaps and solve confilcts (whickey)
+    - [ ] add commit and push what's new
+    - [x] change to aerospace (discard amethyst)
 
 - [ ] there is no intersection for c++ between the linters supported by none-ls and installable with Mason
 - LSP
 
-    - [ ] mason-null-ls to bridge with none-ls? (maybe it's worth investigating)
-    - [ ] do we want 'vale' for latex? (it needs configuration)
+    - [ ] mason-null-ls to bridge with none-ls? (worth investigating?)
 
 - [ ] Snippets
 
@@ -32,22 +31,21 @@
 - Plugins
 
     - [ ] explicitate (and check the dependencies es illuminate and treesitter)
-    - [ ] go read the documentations
+    - [ ] go read the documentations, to unbloat
     - [ ] undotree
     - [ ] hard time
-    - [x] lualine/powerline -> feline (to be configured)
     - [ ] markdown
     - [ ] add pcalls (with prints!) for troubleshooting
     - [ ] sessions.nvim (simple and lightweight, don't think I need it now)
-    - [ ] unbloat it
+    - [x] lualine
 
 - Alt problem
 
+    - [ ] Everything works as expected out of vim, but can I define keybindings with alt?
     - [x] keybindings with alt key are all taken by mac defaults, is there a way out?
     - [x] Ukelele is the solution
-    - [ ] Everything works as expected out of vim, but can I define keybindings with alt?
 
-- [ ] learn `fzf` and `eza`
+- [x] learn `fzf` and `eza`
 - [ ] Collect system settings into a list of `default` in a bash executable (https://macos-defaults.com/)
 
       
