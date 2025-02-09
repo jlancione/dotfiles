@@ -189,7 +189,7 @@ opacity = 0.92
 title = "Alacritty"
 decorations = "Buttonless" # options are: full/transparent/buttonless/none
 
-option_as_alt = "Both" # only on mac
+option_as_alt = "OnlyLeft" # Both/None/OnlyLeft/OnlyRight, macos only
 
 [window.class]
 general = "Alacritty"
