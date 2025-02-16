@@ -3,15 +3,19 @@
 - Priorities
 
     - [ ] fix lsp and the like (linters? formatters?) -> understand them!
-    - [ ] impara Telescope (sostituisce nvim tree e lo usi anche per muoverti tra i buffers)
+    - [ ] impara Telescope 
+                (sostituisce nvim tree e lo usi anche per muoverti tra i buffers)
     - [ ] check keymaps and solve confilcts (whickey)
-    - [ ] add commit and push what's new
+    - [ ] fzf in vim (https://thevaluable.dev/fzf-vim-integration/)
+    - [x] add commit and push what's new
     - [x] change to aerospace (discard amethyst)
+    - [x] .vimrc 
 
-- [ ] there is no intersection for c++ between the linters supported by none-ls and installable with Mason
 - LSP
 
     - [ ] mason-null-ls to bridge with none-ls? (worth investigating?)
+    - [ ] there is no intersection for c++
+         between the linters supported by none-ls and installable with Mason
 
 - [ ] Snippets
 
@@ -39,9 +43,9 @@
     - [ ] sessions.nvim (simple and lightweight, don't think I need it now)
     - [x] lualine
 
-- Alt problem
+- [x] Alt problem
 
-    - [ ] Everything works as expected out of vim, but can I define keybindings with alt?
+    - [x] Everything works as expected out of vim, but can I define keybindings with alt?
     - [x] keybindings with alt key are all taken by mac defaults, is there a way out?
     - [x] Ukelele is the solution
 
