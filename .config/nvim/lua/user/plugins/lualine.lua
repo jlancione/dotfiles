@@ -10,7 +10,7 @@ return {
       options = {
         icons_enabled = true,
         theme = 'auto',
-        component_separators = { left = ' ', right = ''}, --   
+        component_separators = { left = '', right = ''}, --   
         section_separators = { left = '', right = ''},
         disabled_filetypes = {
           statusline = {},
@@ -28,12 +28,12 @@ return {
       },
       sections = {
         lualine_a = {'mode'},
-        lualine_b = { branch, 'diff'},
-        lualine_c = {'filename', 'diagnostics'},
+        lualine_b = { branch, 'filename'}, -- diff
+        lualine_c = {'diagnostics'},
         lualine_x = {'filetype'}, -- 'encoding', 'fileformat', 
         lualine_y = {'location', 'progress'},
         lualine_z = {
-          {'datetime', style = '%H:%M'}
+          {'datetime', style = '%Hh%Mm'}
         }
       },
       inactive_sections = {
