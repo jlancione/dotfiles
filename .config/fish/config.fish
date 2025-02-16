@@ -117,7 +117,7 @@ alias pyenv='source ~/Pyvenv/bin/activate.fish'
 alias rm='rm -i' # for safety reasons
 
 alias ls='eza --color=always --long --git'
-alias ll='eza --color=always --long --tree --level=2 --git'
+alias lt='eza --color=always -a --tree --level=2 --git'
 alias la='eza -a --color=always --long --git'
 
 # for FZF keybindings
