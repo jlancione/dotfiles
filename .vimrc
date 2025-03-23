@@ -8,9 +8,9 @@
 "
 " `zo`(`zc`) to open(close) SINGLE fold, `zR`(`zM`) to open(close) ALL folds
 " Quickfix: 
-" Copy/Pasting problems? try changing clipboard=unnamedplus
-" Doas .vim/backup exist? (for persistent undos)
-" Do you have fzf? Or maybe it is at a different path?
+" Copy/Pasting problems? Try changing to clipboard=unnamedplus
+" Does .vim/backup exist? (for persistent undos)
+" Do you have fzf? Maybe it's at a different path...
 " Check :version for available features
 
 " GENERAL SETTINGS -------------------------------------------------------- {{{
@@ -64,10 +64,12 @@ set splitright      " When vsplit open new right
 
 " TAB, INDENT RELATED ---------------------------------------------------- {{{
 
-set expandtab       " Use space characters instead of tabs.
+set expandtab       " Use space characters instead of TABs.
+autocmd BufRead,BufNewFile   Makefile setlocal noexpandtab
+                    " To keep TABs in Makefile
 set tabstop=2       " TAB   = 2 spaces.
-set shiftwidth=2    " SHIFT = 2 spaces.
-set smarttab        " Complites the previous TAB
+set shiftwidth=2    " SHIFT = 2 spaces. (for indentation)
+set smarttab        " Completes the previous TAB
 
 "}}}
 
@@ -83,7 +85,9 @@ set hlsearch        " Use highlighting when doing a search.
 
 " MAPPINGS --------------------------------------------------------------- {{{
 
-let mapleader = "<space>"
+" Use space as Leader (need to unmap it before, by default it is mapped to right arrow)
+nnoremap <SPACE> <Nop> 
+let mapleader = " "
 
 " Better scrolling through file
 nnoremap <c-d> <c-d>zz
@@ -108,10 +112,13 @@ vnoremap <a-k> :m '<-2<cr>gv=gv
 " Kill search highlights
 nnoremap <cr> :noh<cr>
 
-" Indentat
+" Indentation
 nnoremap < <s-v><<esc>
 nnoremap > <s-v>><esc>
 
+" To avoid reaching Esc
+inoremap jk <Esc>
+inoremap kj <Esc>
 
 " }}}
 
@@ -155,3 +162,36 @@ set statusline+=\ %Y\ \|\ row:\ %l\ col:\ %c\ \|\ %p%%
 set laststatus=2              " Show the status on the second to last line
 
 " }}}
+
+" NETRW ----------------------------------------------------------------- {{{
+
+let g:netrw_keepdir = 0     " Have the current and working dir synced
+
+let g:netrw_preview = 1
+let g:netrw_alto = 1
+let g:nerw_liststyle = 3
+"let g:netrw_banner  = 0     " To hide the banner
+
+nnoremap <leader>e :20Lexplore<cr>
+                            " 20 is the size of the split
+
+function! NetrwMapping()    " To define keymaps in Netrw
+  nmap <buffer> H u         " Go back in history (like an undo?)
+  nmap <buffer> h -^        " Go up a directory
+  nmap <buffer> l <CR>      " Open dir/file
+
+" nmap <buffer> . gh        " Toggle dotfiles
+  nmap <buffer> P <C-w>z    " Close preview window
+
+  nmap <buffer> L <CR>:Lexplore<CR> 
+                            " Open file and close Netrw
+  nmap <buffer> <Leader>e :Lexplore<CR>
+                            " Close Netrw
+endfunction
+
+augroup netrw_mapping
+  autocmd!
+  autocmd filetype netrw call NetrwMapping()
+augroup END
+
+"}}}
