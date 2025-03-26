@@ -16,9 +16,11 @@ return {
         "jsonls",
         -- "yamlls",
         "texlab",
+        "clangd"
       }
 
-      vim.lsp.set_log_level("off") -- turn it to "debug" for debugging, otherwise LspLog grows uncontrollably
+-- turn it to "debug" for debugging, otherwise LspLog grows uncontrollably
+      vim.lsp.set_log_level("off")
 
       local settings = {
         ui = {
@@ -35,6 +37,7 @@ return {
 
       require("mason").setup(settings)
       require("mason-lspconfig").setup({
+      -- you see that mason only installs and manages things
         ensure_installed = servers,
         automatic_installation = true,
       })
@@ -52,16 +55,16 @@ return {
           capabilities = require("user.plugins.lsp.settings.handlers").capabilities,
         }
 
-        server = vim.split(server, "@")[1]
+        server = vim.split(server, "@")[1] -- this is string manipulation
 
-        -- qsto qua nn stiamo riuscendo a caricarlo…
        local require_ok, conf_opts = pcall(require, "user.plugins.lsp.settings." .. server)
 --     if not require_ok then print(server .. " server settings not found")
 --     end
        if require_ok then
          opts = vim.tbl_deep_extend("force", conf_opts, opts)
        end
-
+      -- here we are actually setting up the server protocls configs
+      -- it's lspconfig that does that puts the sauce
         lspconfig[server].setup(opts)
       end
 
