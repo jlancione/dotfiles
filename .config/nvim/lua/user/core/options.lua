@@ -41,7 +41,7 @@ local options = {
 
   -- EDIT
   clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
-  mouse = "a",                             -- allow the mouse to be used in neovim
+  mouse = "nv",                             -- allow the mouse to be used in neovim (in normal and visuol modes)
   mousehide = true,                         -- hide mouse while typing (works only in GUI)
   ignorecase = true,                       -- ignore case in search patterns
   smartcase = true,                        -- smart case
