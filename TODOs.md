@@ -11,6 +11,12 @@
     - [x] change to aerospace (discard amethyst)
     - [x] .vimrc 
 
+- [ ] change to Zen browser
+
+    - [ ] bookmarks (tidy up and keep relevant)
+    - [ ] password manager (unito)
+    - [ ] understand how to integrate its feature in the workflow
+
 - LSP
 
     - [ ] mason-null-ls to bridge with none-ls? (worth investigating?)
