@@ -18,7 +18,7 @@ set PLUTO_DIR $HOME/Documents/Uni/Algoritmi/gPLUTO/
 
 ### SET EITHER DEFAULT EMACS MODE OR VI MODE ###
 function fish_user_key_bindings
-  # fish_default_key_bindings
+  #fish_default_key_bindings
   fish_vi_key_bindings
 end
 ### END OF VI MODE ###
@@ -108,17 +108,22 @@ end
 ### ALIASES ###
 alias clr='clear; echo; echo; seq 1 (tput cols) | sort -R | spark | lolcat; echo'
 alias skim='/Applications/Skim.app/Contents/MacOS/Skim'
+alias root='root -l'
 alias config='/opt/homebrew/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
 # to launch the venv for python in Mac (all because of homebrew)
 # to create a virtual env run:   python<version> -m venv path/to/venv
+# python3 -m venv ~/Pyvenv
+# root version may change in future so remember 
 alias pyenv='source ~/Pyvenv/bin/activate.fish'
+#; source /opt/homebrew/Cellar/root/6.32.08/bin/thisroot.fish'
 
 alias rm='rm -i' # for safety reasons
 
 alias ls='eza --color=always --long --git'
 alias lt='eza --color=always -a --tree --level=2 --git'
 alias la='eza -a --color=always --long --git'
+alias ll='eza -a -g --color=always --long --git'
 
 # for FZF keybindings
 fzf --fish | source
