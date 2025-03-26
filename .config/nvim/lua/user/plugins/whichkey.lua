@@ -8,8 +8,10 @@ return {
   opts = {
     setup = {
       show_help = true,
-      plugins = {
+      plugins = {  -- whichkey has its own plugins eg. marks, registers, spelling
         presets = {
+          -- the presets plugin, adds help for a bunch of default keybindings in Neovim
+          -- No actual key bindings are created
           operators = false,    -- adds help for operators like d, y, ... and registers them for motion / text object completion
           motions = false,      -- adds help for motions
           text_objects = false, -- help for text objects triggered after entering an operator
@@ -23,8 +25,6 @@ return {
             enabled = false,    -- enabling this will show WhichKey when pressing z= to select spelling suggestions
             suggestions = 10,   -- how many suggestions should be shown in the list?
           },
-          -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-          -- No actual key bindings are created
         },
       },
       key_labels = {
@@ -89,15 +89,11 @@ return {
       prefix = "<leader>",
       mode = { "n", "v" },
       b = { "<cmd>VimtexCompile<CR>", "build" },
-      c = { "<cmd>clo<CR>", "close split" },
-      -- k = { "<cmd>clo<CR>", "kill split" },
-      d = { "<cmd>update! | bdelete!<CR>", "delete buffer" },
       e = { "<cmd>NvimTreeToggle<CR>", "explorer" },
-      j = { "<cmd>vert sb<CR>", "new split" },
-      -- h = { "<cmd>Alpha<CR>", "home" },
+      -- j = { "<cmd>vert sb<CR>", "new split" },
       i = { "<cmd>VimtexTocOpen<CR>", "index" },
-      k = { "<cmd>on<CR>", "max split" },
-      q = { "<cmd>wa! | qa!<CR>", "quit" },
+      -- k = { "<cmd>on<CR>", "max split" },
+      -- q = { "<cmd>wa! | qa!<CR>", "quit" },
       u = { "<cmd>Telescope undo<CR>", "undo" },
       v = { "<cmd>VimtexView<CR>", "view" },
       w = { "<cmd>wa!<CR>", "write" },
@@ -121,7 +117,6 @@ return {
         u = { "<cmd>cd %:p:h<CR>", "update cwd" },
         v = { "<plug>(vimtex-context-menu)", "vimtex menu" },
         w = { "<cmd>VimtexCountWords!<CR>", "word count" },
-        -- w = { "<cmd>TermExec cmd='pandoc %:p -o %:p:r.docx'<CR>" , "word"},
         -- s = { "<cmd>lua function() require('cmp_vimtex.search').search_menu() end<CR>"           , "search citations" },
       },
       -- c = {
@@ -143,8 +138,8 @@ return {
         k = { "<cmd>Telescope keymaps<CR>", "keymaps" },
         -- m = { "<cmd>Telescope man_pages<CR>", "man pages" },
         r = { "<cmd>Telescope registers<CR>", "registers" },
-        t = { "<cmd>Telescope colorscheme<CR>", "theme" },
- --     y = { "<cmd>YankyRingHistory<CR>", "yanks" },
+        -- t = { "<cmd>Telescope colorscheme<CR>", "theme" },
+     -- y = { "<cmd>YankyRingHistory<CR>", "yanks" },
         -- c = { "<cmd>Telescope commands<CR>", "commands" },
         -- r = { "<cmd>Telescope oldfiles<CR>", "recent" },
       },
@@ -187,17 +182,6 @@ return {
       --   v = { "<cmd>Neorg keybind norg core.pivot.invert-list-type<CR>", "invert list" },
       --   -- t = { "<cmd>Neorg keybind norg core.pivot.toggle-list-type<CR>", "toggle list" },
       -- },
-      -- LIST MAPPINGS
- --   l = {
- --     name = "LIST",
- --     c = { "<cmd>lua HandleCheckbox()<CR>", "checkbox" },
- --     -- c = { "<cmd>lua require('autolist').invert()<CR>", "checkbox" },
- --     -- x = { "<cmd>lua handle_checkbox()<CR>", "checkbox" },
- --     -- c = { "<cmd>AutolistToggleCheckbox<CR>", "checkmark" },
- --     n = { "<cmd>AutolistCycleNext<CR>", "next" },
- --     p = { "<cmd>AutolistCyclePrev<CR>", "previous" },
- --     r = { "<cmd>AutolistRecalculate<CR>", "reorder" },
- --   },
       L = {
         name = "LSP",
         b = { "<cmd>Telescope diagnostics bufnr=0<CR>", "buffer diagnostics" },
@@ -216,90 +200,28 @@ return {
         R = { "<cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
         T = { "<cmd>Telescope lsp_type_definitions<CR>", "type definition" },
       },
-      -- MARKDOWN MAPPINGS
- --   m = {
- --     name = "MARKDOWN",
- --     v = { "<cmd>Slides<CR>", "view slides" },
- --   },
- --   S = {
- --     name = "SESSIONS",
- --     s = { "<cmd>SessionManager save_current_session<CR>", "save" },
- --     d = { "<cmd>SessionManager delete_session<CR>", "delete" },
- --     l = { "<cmd>SessionManager load_session<CR>", "load" },
- --   },
- --   n = {
- --     name = "NIXOS",
- --     d = { "<cmd>TermExec cmd='nix develop'<CR><C-w>j", "develop" },
- --     -- f = { "<cmd>TermExec cmd='sudo nixos-rebuild switch --flake ~/.config/nixos/'<CR><C-w>j", "flake" },
- --     g = { "<cmd>TermExec cmd='nix-collect-garbage --delete-older-than 15d'<CR><C-w>j", "garbage" },
- --     -- g = { "<cmd>TermExec cmd='nix-collect-garbage -d'<CR><C-w>j", "garbage" },
- --     p = { "<cmd>TermExec cmd='vivaldi https://search.nixos.org/packages' open=0<CR>", "packages" },
- --     m = { "<cmd>TermExec cmd='vivaldi https://mynixos.com' open=0<CR>", "my-nixos" },
- --     r = { "<cmd>TermExec cmd='sudo nixos-rebuild switch --flake ~/.dotfiles/'<CR><C-w>l", "rebuild flake" },
- --     h = { "<cmd>TermExec cmd='home-manager switch --flake ~/.dotfiles/'<CR><C-w>l", "home-manager" },
- --     -- r = { "<cmd>TermExec cmd='home-manager switch'<CR><C-w>j", "home rebuild" },
- --     -- r = { "<cmd>TermExec cmd='sudo nixos-rebuild switch --flake ~/.config/home-manager/#nandi'<CR><C-w>j", "home rebuild" },
- --     -- r = { "<cmd>TermExec cmd='home-manager switch --flake ~/.config/home-manager/'<CR><C-w>j", "rebuild" },
- --     u = { "<cmd>TermExec cmd='nix flake update'<CR><C-w>j", "update" },
- --   },
- --   p = {
- --     name = "PANDOC",
- --     w = { "<cmd>TermExec cmd='pandoc %:p -o %:p:r.docx'<CR>", "word" },
- --     m = { "<cmd>TermExec cmd='pandoc %:p -o %:p:r.md'<CR>", "markdown" },
- --     h = { "<cmd>TermExec cmd='pandoc %:p -o %:p:r.html'<CR>", "html" },
- --     l = { "<cmd>TermExec cmd='pandoc %:p -o %:p:r.tex'<CR>", "latex" },
- --     p = { "<cmd>TermExec cmd='pandoc %:p -o %:p:r.pdf' open=0<CR>", "pdf" },
- --     v = { "<cmd>TermExec cmd='zathura %:p:r.pdf &' open=0<CR>", "view" },
- --     -- x = { "<cmd>echo "run: unoconv -f pdf path-to.docx""  , "word to pdf"},
- --   },
- --   s = {
- --     name = "SURROUND",
- --     s = { "<Plug>(nvim-surround-normal)", "surround" },
- --     d = { "<Plug>(nvim-surround-delete)", "delete" },
- --     c = { "<Plug>(nvim-surround-change)", "change" },
- --   },
       t = {
         name = "TEMPLATES",
         r = {
           "<cmd>read ~/.config/nvim/templates/RelazElettronica.tex<CR>",
           "Relazione",
         },
-        m = {
+        x = {
           "<cmd>read ~/.config/nvim/templates/modelloMAXI.tex<CR>",
           "Maxi",
         },
---      p = {
---        "<cmd>read ~/.config/nvim/templates/PhilPaper.tex<CR>",
---        "PhilPaper.tex",
---      },
---      l = {
---        "<cmd>read ~/.config/nvim/templates/Letter.tex<CR>",
---        "Letter.tex",
---      },
---      g = {
---        "<cmd>read ~/.config/nvim/templates/Glossary.tex<CR>",
---        "Glossary.tex",
---      },
---      h = {
---        "<cmd>read ~/.config/nvim/templates/HandOut.tex<CR>",
---        "HandOut.tex",
---      },
---      b = {
---        "<cmd>read ~/.config/nvim/templates/PhilBeamer.tex<CR>",
---        "PhilBeamer.tex",
---      },
---      s = {
---        "<cmd>read ~/.config/nvim/templates/SubFile.tex<CR>",
---        "SubFile.tex",
---      },
---      r = {
---        "<cmd>read ~/.config/nvim/templates/Root.tex<CR>",
---        "Root.tex",
---      },
---      m = {
---        "<cmd>read ~/.config/nvim/templates/MultipleAnswer.tex<CR>",
---        "MultipleAnswer.tex",
---      },
+        m = {
+          "<cmd>read ~/.config/nvim/templates/makefile<CR>",
+          " makefile",
+        },
+        c = {
+          "<cmd>read ~/.config/nvim/templates/main.cpp<CR>",
+          " cpp",
+        },
+        g = {
+          "<cmd>read ~/.config/nvim/templates/plot.gp<CR>",
+          "gnupolt script",
+        },
       },
     },
   },
