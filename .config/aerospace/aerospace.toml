@@ -208,3 +208,8 @@ run = ['layout floating','move-node-to-workspace U']
 [[on-window-detected]]
 if.app-id = 'org.mozilla.thunderbird'
 run = 'move-node-to-workspace U'
+
+[[on-window-detected]]
+# to have ROOT plots floating
+if.app-name-regex-substring = 'root'
+run = 'layout floating'
