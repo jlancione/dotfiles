@@ -15,7 +15,7 @@ local options = {
  -- hlsearch = true,                         -- highlight all matches on previous search pattern
   pumheight = 10,                          -- pop up menu height
   showmode = false,                        -- we don't need to see things like -- INSERT -- anymore
-  showtabline = 2,                         -- always show tabs
+  showtabline = 0,                         -- 0 never, 1 only if >= 2 tab pages, 2 always show tabline at the top
   splitbelow = true,                       -- force all horizontal splits to go below current window
   splitright = true,                       -- force all vertical splits to go to the right of current window
   termguicolors = true,                    -- set term gui colors (most terminals support this)
