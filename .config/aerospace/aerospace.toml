@@ -9,8 +9,8 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = ['exec-and-forget borders',
-                         'exec-and-forget osascript ~/.config/thunderbird_launcher.applescript']
+after-startup-command = ['exec-and-forget borders']
+                         'exec-and-forget open -g /Applications/Thunderbird.app/']
 
 # Start AeroSpace at login
 start-at-login = true
