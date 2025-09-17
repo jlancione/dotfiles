@@ -561,6 +561,59 @@
                         ]
                     },
                     {
+                        "description": "Double tap cmd-m mutes/unmutes volume",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "command-m",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "m",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [{ "shell_command": "/bin/bash ~/.config/mute.sh" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "key_code": "m",
+                                    "modifiers": { "mandatory": ["command"] }
+                                },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "command-m",
+                                            "value": 1
+                                        }
+                                    }
+                                ],
+                                "to_delayed_action": {
+                                    "to_if_canceled": [
+                                        {
+                                            "set_variable": {
+                                                "name": "command-m",
+                                                "value": 0
+                                            }
+                                        }
+                                    ],
+                                    "to_if_invoked": [
+                                        {
+                                            "set_variable": {
+                                                "name": "command-m",
+                                                "value": 0
+                                            }
+                                        }
+                                    ]
+                                },
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Double tap cmd-q closes apps",
                         "manipulators": [
                             {
