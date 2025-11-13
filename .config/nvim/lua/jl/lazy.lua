@@ -21,6 +21,7 @@ end
 -- Put Lazy into the runtimepath for neovim
 vim.opt.runtimepath:prepend(lazypath)
 
+local my_colorscheme = "kanagawa-wave"
 
 -- Setup lazy.nvim --
 require("lazy").setup({
@@ -28,9 +29,8 @@ require("lazy").setup({
     -- import your plugins
     { import = "jl.plugins" },
   },
-  -- Configure any other settings here. See the documentation for more details.
   -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "habamax" } },
+  install = { colorscheme = { my_colorscheme } },
   -- automatically check for plugin updates
   checker = {
     enabled = true,
@@ -41,6 +41,7 @@ require("lazy").setup({
   -- },
 })
 
+vim.cmd.colorscheme(my_colorscheme)
 
 -- It is suggested to version control lazy-lock.json
--- It hosts the versions of every plugin installed
+-- because hosts the versions of every plugin installed

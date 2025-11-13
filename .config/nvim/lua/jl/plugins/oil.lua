@@ -5,7 +5,7 @@ return {
     -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
     lazy = false, -- Lazy loading is not recommended because
     config = function()
-      require("oil").setup {
+      require("oil").setup({
         -- default_file_explorer = true, -- Oil will take over directory buffers, es. nvim .
         columns = { "icon" }, -- "permissions", "size", "mtime"
         delete_to_trash = true,
@@ -18,7 +18,7 @@ return {
           ["<BS>"] = { "actions.parent", desc = "Go up a directory" },
           ["<esc>"] = { "actions.close", mode = "n" },
         },
-      }
+      })
 
       vim.keymap.set("n", "<leader>e", "<cmd>Oil<CR>" )
 

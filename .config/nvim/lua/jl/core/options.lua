@@ -45,7 +45,7 @@ local options = {
   mousehide = true,                         -- hide mouse while typing (works only in GUI)
   ignorecase = true,                       -- ignore case in search patterns
   smartcase = true,                        -- smart case
-  virtualedit = "block"			   -- virtualblock mode doesn't get stuck at the end of line
+  virtualedit = "block"			               -- virtualblock mode doesn't get stuck at the end of line
 
   }
 
