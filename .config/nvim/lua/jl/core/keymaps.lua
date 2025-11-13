@@ -36,11 +36,11 @@ keymap("n", "<CR>", ":noh<CR>", opts)
 keymap("n", "<", "<S-v><<esc>", opts)
 keymap("n", ">", "<S-v>><esc>", opts)
 
--- Nvimtree
-keymap("n", "<leader>e", "<cmd>Ntree<cr>", opts)
-
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv^", opts)
 keymap("v", ">", ">gv^", opts)
 keymap("v", "p", '"_dP', opts)
+
+-- Nvimtree
+-- keymap("n", "<leader>e", "<cmd>Ntree<cr>", opts)

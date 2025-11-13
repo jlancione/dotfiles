@@ -1,2 +1,2 @@
-require("jl_config.core")
-require("jl_config.lazy")
+require("jl.core")
+require("jl.lazy")
