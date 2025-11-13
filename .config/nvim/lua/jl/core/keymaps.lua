@@ -30,7 +30,7 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Kill search highlights
-keymap("n", "<CR>", ":noh<CR>", opts)
+keymap("n", "<leader>/", ":nohlsearch<CR>", opts)
 
 -- Indentation
 keymap("n", "<", "<S-v><<esc>", opts)
