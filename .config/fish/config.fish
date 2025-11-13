@@ -115,8 +115,7 @@ alias config='/opt/homebrew/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 # to create a virtual env run:   python<version> -m venv path/to/venv
 # python3 -m venv ~/Pyvenv
 # root version may change in future so remember 
-alias pyenv='source ~/Pyvenv/bin/activate.fish'
-#; source /opt/homebrew/Cellar/root/6.32.08/bin/thisroot.fish'
+alias pyenv='source ~/Pyvenv/bin/activate.fish; source /opt/homebrew/Cellar/root/6.34.08_1/bin/thisroot.fish'
 
 alias rm='rm -i' # for safety reasons
 
