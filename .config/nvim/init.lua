@@ -1,2 +1,2 @@
-require "user.core"
-require "user.bootstrap"
+require("jl_config.core")
+require("jl_config.lazy")
