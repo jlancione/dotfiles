@@ -190,7 +190,7 @@ automatically-unhide-macos-hidden-apps = false
 
 # CALLBACKS, use: aerospace list-apps, to know the ids of the apps running
 [[on-window-detected]]
-if.app-id = 'org.alacritty'
+if.app-name-regex-substring = 'alacritty'
 run = 'move-node-to-workspace T'
 
 [[on-window-detected]]
