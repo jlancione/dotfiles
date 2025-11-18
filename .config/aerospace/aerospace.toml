@@ -198,16 +198,20 @@ if.app-name-regex-substring = 'LibreWolf'
 run = 'move-node-to-workspace B'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'finder'
-run = 'layout floating'
+if.app-id = 'org.mozilla.thunderbird'
+run = 'move-node-to-workspace U'
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
 run = ['layout floating','move-node-to-workspace U']
 
 [[on-window-detected]]
-if.app-id = 'org.mozilla.thunderbird'
-run = 'move-node-to-workspace U'
+if.app-name-regex-substring = 'finder'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Zotero'
+run = 'layout floating'
 
 [[on-window-detected]]
 # to have ROOT plots floating
