@@ -66,7 +66,7 @@
                                     "key_code": "comma",
                                     "modifiers": { "mandatory": [] }
                                 },
-                                "to": [{ "shell_command": "open -na Alacritty.app --args --command /opt/homebrew/bin/nvim -e +WikiIndex" }],
+                                "to": [{ "shell_command": "export PATH=/opt/homebrew/bin:$PATH; open -na Alacritty.app --args --command nvim ~/wiki/Index.md" }],
                                 "type": "basic"
                             },
                             {
@@ -97,7 +97,7 @@
                                             "value": 1
                                         }
                                     },
-                                    { "shell_command": "open -na Alacritty.app --args --command /opt/homebrew/bin/nvim +WikiIndex" }
+                                    { "shell_command": "export PATH=/opt/homebrew/bin:$PATH; open -na Alacritty.app --args --command nvim ~/wiki/Index.md" }
                                 ],
                                 "type": "basic"
                             },
