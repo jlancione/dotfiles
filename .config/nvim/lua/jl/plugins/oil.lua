@@ -1,12 +1,11 @@
 return {
   {
     'stevearc/oil.nvim',
-    dependencies = { { "nvim-mini/mini.icons", version = '*', opts = {} } },
-    -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
-    lazy = false, -- Lazy loading is not recommended because
+    dependencies = { { "nvim-mini/mini.icons", version = '*', opts = {}, } },
+    lazy = false, -- Lazy loading is not recommended
     config = function()
       require("oil").setup({
-        -- default_file_explorer = true, -- Oil will take over directory buffers, es. nvim .
+        -- default_file_explorer = false,
         columns = { "icon" }, -- "permissions", "size", "mtime"
         delete_to_trash = true,
         view_options = { show_hidden = true },
