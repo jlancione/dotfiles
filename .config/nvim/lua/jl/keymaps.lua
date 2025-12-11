@@ -2,6 +2,9 @@ local opts = { noremap = true, silent = true }
 
 -- Shorten function name
 local keymap = vim.keymap.set
+-- local keymap = function(mode, keys, func, description)
+--     vim.keymap.set(mode, keys, func, { noremap = true, silent = true, desc = description })
+-- end
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -29,6 +32,10 @@ keymap("n", "<S-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
+-- Move text up and down
+-- keymap("n", "<A-j>", ":m .+1<CR>==", "Move line up")
+-- keymap("n", "<A-k>", ":m .-2<CR>==", "Move line down")
+
 -- Kill search highlights
 keymap("n", "<leader>/", ":nohlsearch<CR>", opts)
 
@@ -36,11 +43,17 @@ keymap("n", "<leader>/", ":nohlsearch<CR>", opts)
 keymap("n", "<", "<S-v><<esc>", opts)
 keymap("n", ">", "<S-v>><esc>", opts)
 
+
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv^", opts)
 keymap("v", ">", ">gv^", opts)
 keymap("v", "p", '"_dP', opts)
+
+-- Move text up and down
+-- keymap("v", "<A-j>", ":m '>+1<CR>gv=gv", "Move line up")
+-- keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", "Move line down")
+-- keymap("v", "p", '"_dP', "Delete selected region and paste")
 
 -- Nvimtree
 -- keymap("n", "<leader>e", "<cmd>Ntree<cr>", opts)
