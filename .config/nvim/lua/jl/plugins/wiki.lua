@@ -18,7 +18,7 @@ return {
       -- keymaps
       keymap("n", "<c-CR>", ":vertical WikiLinkFollowSplit<CR>",  { desc = "Open link in split" })
       keymap("n", "<leader>la", ":WikiLinkAdd<CR>", { desc = "[L]ink [A]dd" }) 
-      -- keymap("n", "<leader>wp", ":WikiPages<CR>", { desc = "Search [W]iki [P]ages" }) 
+      keymap("n", "<leader>ow", ":WikiPages<CR>", { desc = "[O]pen [W]iki Page" }) 
 
     end
   }
