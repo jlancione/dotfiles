@@ -670,38 +670,6 @@
                                 "type": "basic"
                             }
                         ]
-                    },
-                    {
-                        "description": "Option+Shift+ comma/period to Control+left/right_arrow (for spaces navigation)",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "w",
-                                    "modifiers": { "mandatory": ["left_shift", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_arrow",
-                                        "modifiers": ["left_control"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "e",
-                                    "modifiers": { "mandatory": ["left_shift", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_arrow",
-                                        "modifiers": ["left_control"]
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
                     }
                 ]
             },
