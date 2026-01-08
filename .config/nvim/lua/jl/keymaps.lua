@@ -1,59 +1,52 @@
-local opts = { noremap = true, silent = true }
-
 -- Shorten function name
-local keymap = vim.keymap.set
--- local keymap = function(mode, keys, func, description)
---     vim.keymap.set(mode, keys, func, { noremap = true, silent = true, desc = description })
--- end
+local keymap = function(mode, keys, func, description)
+    vim.keymap.set(mode, keys, func, { noremap = true, silent = true, desc = description })
+end
 
 --Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
+keymap("", "<Space>", "<Nop>", "Make space dummy before setting it as <leader>" )
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Normal --
--- Better moving through file
-keymap("n", "<C-d>", "<C-d>zz", opts)
-keymap("n", "<C-u>", "<C-u>zz", opts)
+-- File navigation
+keymap( "n", "<C-d>", "<C-d>zz", "Scroll [D]own" )
+keymap( "n", "<C-u>", "<C-u>zz", "Scroll [U]p"   )
 
--- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+-- Window navigation
+keymap( "n", "<C-h>", "<C-w>h", "Go to Right window" )
+keymap( "n", "<C-j>", "<C-w>j", "Go to Down window"  )
+keymap( "n", "<C-k>", "<C-w>k", "Go to Up window"    )
+keymap( "n", "<C-l>", "<C-w>l", "Go to Left window"  )
 
--- Resize with arrows
-keymap("n", "<S-Up>", ":resize -2<CR>", opts)
-keymap("n", "<S-Down>", ":resize +2<CR>", opts)
-keymap("n", "<S-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<S-Right>", ":vertical resize +2<CR>", opts)
+-- Buffer navigation
+keymap( "n", "<S-l>", ":bnext<CR>",     "Go to next buffer"     )
+keymap( "n", "<S-h>", ":bprevious<CR>", "Go to previous buffer" )
 
--- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+-- Resize windows
+keymap( "n", "<S-Up>", ":resize -2<CR>",   "Squeeze (h) Top/Right window" )
+keymap( "n", "<S-Down>", ":resize +2<CR>", "Expand (h) Top/Right window"  )
+keymap( "n", "<S-Left>", ":vertical resize -2<CR>",  "Expand (v) Top/Right window"  )
+keymap( "n", "<S-Right>", ":vertical resize +2<CR>", "Squeeze (v) Top/Right window" )
 
 -- Move text up and down
--- keymap("n", "<A-j>", ":m .+1<CR>==", "Move line up")
--- keymap("n", "<A-k>", ":m .-2<CR>==", "Move line down")
-
--- Kill search highlights
-keymap("n", "<leader>/", ":nohlsearch<CR>", opts)
+keymap( "n", "<M-j>", ":m .+1<CR>==", "Drag down line" )
+keymap( "n", "<M-k>", ":m .-2<CR>==", "Drag up line"   )
 
 -- Indentation
-keymap("n", "<", "<S-v><<esc>", opts)
-keymap("n", ">", "<S-v>><esc>", opts)
+keymap("n", "<", "<S-v><<esc>", "Decrease indentation level" )
+keymap("n", ">", "<S-v>><esc>", "Increase indentation level" )
 
+-- Utilities
+keymap( "n", "<leader>/", ":nohlsearch<CR>", "Kill search highlights" )
+keymap( "n", "<leader>qq", ":wqa<CR>", "Write and [QQ]uit all" )
 
 -- Visual --
--- Stay in indent mode
-keymap("v", "<", "<gv^", opts)
-keymap("v", ">", ">gv^", opts)
-keymap("v", "p", '"_dP', opts)
+-- Indent staying in visual mode
+keymap("v", "<", "<gv^", "Decrease indentation level, stay in V-mode" )
+keymap("v", ">", ">gv^", "Increase indentation level, stay in V-mode" )
+keymap("v", "p", '"_dP', "Delet selected region and paste" )
 
 -- Move text up and down
--- keymap("v", "<A-j>", ":m '>+1<CR>gv=gv", "Move line up")
--- keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", "Move line down")
--- keymap("v", "p", '"_dP', "Delete selected region and paste")
-
--- Nvimtree
--- keymap("n", "<leader>e", "<cmd>Ntree<cr>", opts)
+keymap("v", "<M-j>", ":m '>+1<CR>gv=gv", "Drag down line" )
+keymap("v", "<M-k>", ":m '<-2<CR>gv=gv", "Drag up line"   )
