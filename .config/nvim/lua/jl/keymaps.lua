@@ -39,7 +39,7 @@ keymap("n", ">", "<S-v>><esc>", "Increase indentation level" )
 
 -- Utilities
 keymap( "n", "<leader>/", ":nohlsearch<CR>", "Kill search highlights" )
-keymap( "n", "<leader>qq", ":wqa<CR>", "Write and [QQ]uit all" )
+keymap( "n", "<leader>qq", ":qa<CR>", "[QQ]uit all" )
 
 -- Visual --
 -- Indent staying in visual mode
