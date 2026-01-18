@@ -1,7 +1,7 @@
 return {
   {
-    'stevearc/oil.nvim',
-    dependencies = { { "nvim-mini/mini.icons", version = '*', opts = {}, } },
+    "stevearc/oil.nvim",
+    dependencies = { { "nvim-mini/mini.icons", version = "*", opts = {}, } },
     lazy = false, -- Lazy loading is not recommended
     config = function()
       require("oil").setup({
