@@ -1,25 +1,26 @@
 return {
   {
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
+    "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
     dependencies = {
-      'nvim-lua/plenary.nvim',
-      'BurntSushi/ripgrep',
-      { "nvim-mini/mini.icons", version = '*', opts = {} },
+      "nvim-lua/plenary.nvim",
+      "BurntSushi/ripgrep",
+      { "nvim-mini/mini.icons", opts = {} },
+      -- { "nvim-tree/nvim-web-devicons" }, 
 
       -- extensions
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', },
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make", },
     -- "nvim-telescope/telescope-bibtex.nvim",
     -- "debugloop/telescope-undo.nvim",
     },
 
     config = function()
-      local telescope = require('telescope')
-      local builtin   = require('telescope.builtin')
+      local telescope = require("telescope")
+      local builtin   = require("telescope.builtin")
 
       telescope.setup({
         defaults = {
-          path_dispaly = { 'smart' },
+          path_dispaly = { "smart" },
           prompt_prefix = " ",
           selection_caret = " ",
           -- mappings = {
@@ -33,7 +34,7 @@ return {
         -- Configuration for built-in pickers
         pickers = {
           live_grep = {
-           theme = 'ivy',
+           theme = "ivy",
           },
         },
 
@@ -43,7 +44,7 @@ return {
 
       })
 
-      telescope.load_extension( 'fzf' )
+      telescope.load_extension( "fzf" )
 
       -- keymaps
       local keymap = vim.keymap.set
