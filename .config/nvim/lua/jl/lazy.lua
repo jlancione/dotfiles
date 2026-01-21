@@ -44,4 +44,4 @@ require("lazy").setup({
 vim.cmd.colorscheme(my_colorscheme)
 
 -- It is suggested to version control lazy-lock.json
--- because hosts the versions of every plugin installed
+-- because it hosts the versions of every plugin installed
