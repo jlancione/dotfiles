@@ -11,11 +11,18 @@ local Ruler = {
   -- %L = number of lines in the buffer
   -- %c = column number
   -- %P = percentage through file of displayed window
-  -- %p is different
+  -- %p = percentage through file of line cursor is on
   provider = "%3l:%2c %3p%%",
 }
 
---
+local lazy_status = require("lazy.status")
+local LazyStatus = {
+  condition = lazy_status.has_updates,
+  provider = lazy_status.updates,
+  hl = { fg = "blue" },
+}
+
+
 -- local LSPActive = {
 --     condition = conditions.lsp_attached,
 --     update = {"LspAttach", "LspDetach"},
@@ -24,8 +31,8 @@ local Ruler = {
 --     provider = " [LSP]",
 --     hl = { fg = "green", bold = true },
 -- }
---
---
+
+
 
 -- local Diagnostics = {
 --
@@ -75,14 +82,15 @@ local Ruler = {
 --         provider = "]",
 --     },
 -- }
---
+
+
 local RhsBlock = {
-  init = function(self)
-  end,
   Space,
   -- Diagnostics,
   -- LSPActive,
+  LazyStatus,
+  Space,
   Ruler,
 }
 
-return { rhs = Ruler }
+return { rhs = RhsBlock }
