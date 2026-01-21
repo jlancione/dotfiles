@@ -68,10 +68,34 @@ local FileNameBlock = {
   FileIcon,
   Space,
   FileName,
-  Space,
-  FileFlags,
   { provider = "%<" }, -- this means that the statusline is cut here when there's not enough space
 }
 
 
-return { lhs = FileNameBlock }
+-- the following relies on gitsigns
+-- local Git = {
+--   condition = conditions.is_git_repo,
+--
+--   init = function(self)
+--     self.status_dict = vim.b.gitsigns_status_dict
+--     self.has_changes = self.status_dict.added ~= 0 or self.status_dict.removed ~= 0 or self.status_dict.changed ~= 0
+--   end,
+--   hl = { fg = "blue" },
+--
+--   {   -- git branch name
+--     provider = function(self)
+--       return " " .. self.status_dict.head
+--     end,
+--     hl = { bold = true }
+--   },
+-- }
+
+local lhs = { 
+  FileNameBlock,
+  Space,
+  -- Git,
+  -- Space,
+  FileFlags,
+}
+
+return { lhs = lhs }
