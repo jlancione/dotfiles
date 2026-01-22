@@ -41,6 +41,7 @@ local SpecialStatusLine = {
 
   LeftHandSide.file_type,
   Space,
+  -- help and oil are mutually exclusive (filetypes)
   LeftHandSide.help_file_name,
   LeftHandSide.oil_current_dir,
   Space,

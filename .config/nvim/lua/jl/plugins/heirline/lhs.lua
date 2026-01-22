@@ -101,7 +101,7 @@ local FileType = {
 
 local OilCurrentDir = {
   condition = function()
-    return conditions.buffer_matches({ filetype = { "oil" } })
+    return vim.bo.filetype == "oil"
   end,
   provider = function()
     return require("oil").get_current_dir()
