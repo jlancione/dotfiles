@@ -10,7 +10,7 @@ local RightHandSide = require("jl.plugins.heirline.rhs").rhs
 local DefaultStatusLine = {
   {
     hl = {
-      bg = "orange",
+      bg = "orange", -- I don't see its effect
     },
   },
   LeftHandSide.filename,

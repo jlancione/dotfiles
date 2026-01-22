@@ -4,7 +4,7 @@ local Space = { flexible = 1, { provider = " " }, { provider = "" } }
 
 -- StatusLine LEFT HAND SIDE --
 
--- We can now define some children separately and add them later
+-- Child objects definitions
 local FileIcon = {
   init = function(self)
     local filename = self.filename
@@ -26,8 +26,8 @@ local FileIcon = {
 
 local FileName = {
   init = function(self)
-    -- first, trim the pattern relative to the current directory. For other
-    -- options, see :h filename-modifers
+    -- Trim the pattern relative to the current directory.
+    -- For other options, see :h filename-modifers
     self.lfilename = vim.fn.fnamemodify(self.filename, ":.")
     if self.lfilename == "" then return "[No Name]" end
   end,
@@ -39,7 +39,6 @@ local FileName = {
     end
   end,
 
-  -- hl = { fg = utils.get_highlight("Variable").fg },
   flexible = 5, -- it is the priority, higher: last to contract, first to expand
   {
     provider = function(self)
@@ -53,7 +52,7 @@ local FileName = {
   },
 }
 
--- Group the filename related objects in a single component
+-- Group the filename-related objects in a single component
 local FileNameBlock = {
   init = function(self)
       self.filename = vim.api.nvim_buf_get_name(0)
@@ -82,7 +81,7 @@ local FileFlags = {
   },
 }
 
--- the following relies on gitsigns
+-- The following relies on gitsigns
 -- local Git = {
 --   condition = conditions.is_git_repo,
 --
