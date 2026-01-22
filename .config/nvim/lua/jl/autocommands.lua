@@ -8,3 +8,9 @@ vim.api.nvim_create_autocmd("User", {
     -- % Current file name, :p expand to full path, :h last path component removed (head)
   end,
 })
+
+-- Start treesitter highlight, to render markdown link appropriately
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown" },
+  callback = function() vim.treesitter.start() end,
+})
