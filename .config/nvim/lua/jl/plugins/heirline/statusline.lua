@@ -13,9 +13,10 @@ local DefaultStatusLine = {
       bg = "orange", -- I don't see its effect
     },
   },
-  LeftHandSide.filename,
+
+  LeftHandSide.file_name,
   Space,
-  LeftHandSide.fileflags,
+  LeftHandSide.file_flags,
   Align,
   RightHandSide.lazy,
   Space,
@@ -25,11 +26,27 @@ local DefaultStatusLine = {
 local InactiveStatusLine = {
   condition = conditions.is_not_active,
   hl = { fg = "gray" },
-  LeftHandSide.filename,
+  LeftHandSide.file_name,
   { provider = "%<" },
   Align,
 }
 
+local SpecialStatusLine = {
+  condition = function()
+    return conditions.buffer_matches({
+      buftype = { "nofile", "prompt", "help", "quickfix", },
+      filetype = { "oil", },
+    })
+  end,
+
+  LeftHandSide.file_type,
+  Space,
+  LeftHandSide.help_file_name,
+  LeftHandSide.oil_current_dir,
+  Space,
+  LeftHandSide.file_flags,
+  Align,
+}
 
 local StatusLines = {
    hl = function()
@@ -40,6 +57,7 @@ local StatusLines = {
     end
   end,
   fallthrough = false,
+  SpecialStatusLine,
   InactiveStatusLine,
   DefaultStatusLine,
 }

@@ -81,6 +81,34 @@ local FileFlags = {
   },
 }
 
+local HelpFileName = {
+  condition = function()
+    return vim.bo.filetype == "help"
+  end,
+  provider = function()
+    local filename = vim.api.nvim_buf_get_name(0)
+    return vim.fn.fnamemodify(filename, ":t")
+  end,
+  hl = { fg = "yellow" },
+}
+
+local FileType = {
+    provider = function()
+        return string.upper(vim.bo.filetype)
+    end,
+    hl = { fg = "blue", bold = true },
+}
+
+local OilCurrentDir = {
+  condition = function()
+    return conditions.buffer_matches({ filetype = { "oil" } })
+  end,
+  provider = function()
+    return require("oil").get_current_dir()
+  end,
+  hl = { fg = "yellow" },
+}
+
 -- The following relies on gitsigns
 -- local Git = {
 --   condition = conditions.is_git_repo,
@@ -100,8 +128,11 @@ local FileFlags = {
 -- }
 
 local lhs = {
-  filename = FileNameBlock,
-  fileflags = FileFlags,
+  file_name = FileNameBlock,
+  file_flags = FileFlags,
+  file_type = FileType,
+  help_file_name = HelpFileName,
+  oil_current_dir = OilCurrentDir,
 }
 
 
