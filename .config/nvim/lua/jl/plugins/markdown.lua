@@ -12,7 +12,9 @@ return {
       --      enabled = true,
       --      converter = "latex2text",
       --  },
-      heading = { position = "inline", backgrounds = {}, },
+      heading = { position = "inline", backgrounds = {},
+        icons = { "󰫈 ", "󰫇 ", "󰫆 ", "󰫅 ", "󰫄 ", "󰫃 " },
+      },
       bullet = { enabled = false },
       checkbox = {
           checked = { icon = " " },
