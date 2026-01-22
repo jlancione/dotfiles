@@ -21,7 +21,7 @@ return {
           custom = { todo = { raw = "[-]", rendered = " " } }, -- , highlight = "RenderMarkdownTodo", scope_highlight = nil }
       },
       link = {
-        hyperlink = "",
+        hyperlink = "󰌷 ",
         footnote = { icon = "", }, },
     }
   }
