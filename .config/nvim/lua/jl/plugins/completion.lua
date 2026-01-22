@@ -21,7 +21,7 @@ return {
       },
 
       sources = {
-        default = { "path" }, -- "lsp", "snippets", "buffer" },
+        default = { "path" }, -- "lsp", "snippets", "buffer", "omni" }, -- omni is used by wiki completion
       },
 
       fuzzy = { implementation = "prefer_rust_with_warning" }
