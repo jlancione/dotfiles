@@ -15,8 +15,8 @@ return {
       heading = { position = "inline", backgrounds = {}, },
       bullet = { enabled = false },
       checkbox = {
-          checked = { icon = "" },
-          custom = { todo = { raw = "[-]", rendered = "" } }, -- , highlight = "RenderMarkdownTodo", scope_highlight = nil }
+          checked = { icon = " " },
+          custom = { todo = { raw = "[-]", rendered = " " } }, -- , highlight = "RenderMarkdownTodo", scope_highlight = nil }
       },
       -- link = { render_modes = { "n", "c", "v" } },
     }
