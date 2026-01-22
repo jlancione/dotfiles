@@ -13,6 +13,11 @@ return {
         toc   = telescope.toc,    -- for WikiToc
         links = telescope.links,  -- for WikiLinkAdd
       }
+      vim.g.wiki_viewer = {
+        md = ":edit", wiki = ":edit",  -- defaults
+        tex = ":edit",
+        _ = "open"  -- fallback
+      }
 
       local keymap = vim.keymap.set
       -- keymaps
