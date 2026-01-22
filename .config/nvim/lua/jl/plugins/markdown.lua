@@ -20,7 +20,7 @@ return {
           checked = { icon = " " },
           custom = { todo = { raw = "[-]", rendered = " " } }, -- , highlight = "RenderMarkdownTodo", scope_highlight = nil }
       },
-      -- link = { render_modes = { "n", "c", "v" } },
+      link = { footnote = { icon = "", }, },
     }
   }
 }
