@@ -1,8 +1,8 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
 
-local Space = { provider = " " }
-local Align = { provider = "%=" }
+local Space = { flexible = 1, { provider = " " }, { provider = "" } }
+local Align = { flexible = 10, { provider = "%=" }, { provider = "" } }
 
 local LeftHandSide = require("jl.plugins.heirline.lhs").lhs
 local RightHandSide = require("jl.plugins.heirline.rhs").rhs
@@ -13,22 +13,26 @@ local DefaultStatusLine = {
       bg = "orange",
     },
   },
-  LeftHandSide,
+  LeftHandSide.filename,
+  Space,
+  LeftHandSide.fileflags,
   Align,
-  RightHandSide,
+  RightHandSide.lazy,
+  Space,
+  RightHandSide.ruler,
 }
 
--- local InactiveStatusline = {
---     condition = conditions.is_not_active,
---     { hl = { fg = "gray", force = true } },
---     FileNameBlock,
---     { provider = "%<" },
---     Align,
--- }
+local InactiveStatusLine = {
+  condition = conditions.is_not_active,
+  hl = { fg = "gray" },
+  LeftHandSide.filename,
+  { provider = "%<" },
+  Align,
+}
 
 
 local StatusLines = {
-  hl = function()
+   hl = function()
     if conditions.is_active() then
       return "StatusLine"
     else
@@ -37,8 +41,8 @@ local StatusLines = {
   end,
   fallthrough = false,
   InactiveStatusLine,
-  DefaultStatusLine
+  DefaultStatusLine,
 }
 
 
-return { statusline = DefaultStatusLine }
+return { statusline = StatusLines }

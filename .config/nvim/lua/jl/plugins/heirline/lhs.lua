@@ -1,7 +1,6 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
-
-local Space = { provider = " " }
+local Space = { flexible = 1, { provider = " " }, { provider = "" } }
 
 -- StatusLine LEFT HAND SIDE --
 
@@ -26,22 +25,45 @@ local FileIcon = {
 }
 
 local FileName = {
-  provider = function(self)
+  init = function(self)
     -- first, trim the pattern relative to the current directory. For other
     -- options, see :h filename-modifers
-    local filename = vim.fn.fnamemodify(self.filename, ":.")
-    if filename == "" then return "[No Name]" end
-    -- now, if the filename would occupy more than 1/4th of the available
-    -- space, we trim the file path to its initials
-    -- See Flexible Components section below for dynamic truncation
-    if not conditions.width_percent_below(#filename, 0.25) then
-      filename = vim.fn.pathshorten(filename)
-    end
-    return filename
+    self.lfilename = vim.fn.fnamemodify(self.filename, ":.")
+    if self.lfilename == "" then return "[No Name]" end
   end,
-  hl = { fg = "yellow" },
+  hl = function()
+    if conditions.is_not_active() then
+      return { fg = "purple" }
+    else
+      return { fg = "yellow" }
+    end
+  end,
+
   -- hl = { fg = utils.get_highlight("Variable").fg },
+  flexible = 5, -- it is the priority, higher: last to contract, first to expand
+  {
+    provider = function(self)
+      return self.lfilename
+    end,
+  },
+  {
+    provider = function(self)
+      return vim.fn.pathshorten(self.lfilename)
+    end,
+  },
 }
+
+-- Group the filename related objects in a single component
+local FileNameBlock = {
+  init = function(self)
+      self.filename = vim.api.nvim_buf_get_name(0)
+  end,
+  FileIcon,
+  Space,
+  FileName,
+  { provider = "%<" }, -- this means that the statusline is cut here when there's not enough space
+}
+
 
 local FileFlags = {
   {
@@ -59,18 +81,6 @@ local FileFlags = {
     hl = { fg = "orange" },
   },
 }
-
-
-local FileNameBlock = {
-  init = function(self)
-      self.filename = vim.api.nvim_buf_get_name(0)
-  end,
-  FileIcon,
-  Space,
-  FileName,
-  { provider = "%<" }, -- this means that the statusline is cut here when there's not enough space
-}
-
 
 -- the following relies on gitsigns
 -- local Git = {
@@ -90,12 +100,10 @@ local FileNameBlock = {
 --   },
 -- }
 
-local lhs = { 
-  FileNameBlock,
-  Space,
-  -- Git,
-  -- Space,
-  FileFlags,
+local lhs = {
+  filename = FileNameBlock,
+  fileflags = FileFlags,
 }
+
 
 return { lhs = lhs }

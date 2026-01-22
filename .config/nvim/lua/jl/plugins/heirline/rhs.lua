@@ -1,7 +1,6 @@
 local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
-
-local Space = { provider = " " }
+local Space = { flexible = 1, { provider = " " }, { provider = "" } }
 
 -- StatusLine RIGHT HAND SIDE --
 
@@ -12,7 +11,13 @@ local Ruler = {
   -- %c = column number
   -- %P = percentage through file of displayed window
   -- %p = percentage through file of line cursor is on
-  provider = "%3l:%2c %3p%%",
+  flexible = 3,
+  {
+    provider = "%3l:%2c %3p%%",
+  },
+  {
+    provider = "%3p%%",
+  }
 }
 
 local lazy_status = require("lazy.status")
@@ -85,12 +90,10 @@ local LazyStatus = {
 
 
 local RhsBlock = {
-  Space,
   -- Diagnostics,
   -- LSPActive,
-  LazyStatus,
-  Space,
-  Ruler,
+  lazy = LazyStatus,
+  ruler = Ruler,
 }
 
 return { rhs = RhsBlock }
