@@ -4,17 +4,32 @@ return {
     init = function()  -- not `config` because it needs to run before loading the plugin
       vim.g.wiki_root = "~/wiki"
 
+      -- Encode/Decode URLs, then use the default resolver
+      URLResolver = function(x)
+        local url = vim.deepcopy(x)
+
+        url.anchor = vim.fn["wiki#url#utils#extract_anchor"](url.stripped)
+
+        local path = vim.split(url.stripped, "#", { plain = true })[1]
+        path = vim.fn["wiki#url#utils#url_decode"](path)
+        url.path = vim.fn["wiki#url#utils#resolve_path"](path, url.origin) -- default resover
+
+        return url
+      end
+
+      vim.g.wiki_link_schemes = {
+        md = { resolver = URLResolver },
+      }
+
       vim.g.wiki_link_creation = {
         -- to get the default: comment this table and :echo vim.g.wiki_link_creation
         md = {
           -- Controls url produced by `gl` and `WikiLinkFollow`
-          url_transform = function(x)
-            return x.gsub( x, " ", "%%20" ) -- replaces spaces with %20
-          end,
+          url_transform = vim.fn["wiki#url#utils#url_encode"],
           -- Controls url produced by WikiLinkAdd
           path_transform = function(x)
-            local filename = vim.fn.fnamemodify(x, ":t")  -- extracts filename from path
-            return filename.gsub( filename, " ", "%%20" ) -- replaces spaces with %20
+            local pagename = vim.fn.fnamemodify(x, ":t")  -- extracts filename from path
+            return vim.fn["wiki#url#utils#url_encode"](pagename)
           end,
           url_extension = ".md",
           -- Controls the link text produced by WikiLinkAdd
@@ -57,3 +72,51 @@ return {
     end
   }
 }
+
+-- ** Bug Fix, in wiki.vim/autoload/wiki/link.vim
+-- Otherwise a dominates and defaults gets overwritten,
+-- it is an ordering issue of extend()
+-- " Original
+-- "let l:options = extend(l:defaults, a:0 > 0 ? a:1 : {})
+-- " Solution
+-- let l:options = extend(a:0 > 0 ? a:1 : {}, l:defaults)
+
+
+-- ** Tweak to the plugin, in wiki.vim/autotload/wiki/pages.vim
+-- WikiPageRename reads and writes encoded URLs
+-- Otherwise it cannot change incoming links to the renamed page
+-- because it is a string substitution, but it does not apply g:wiki_link_creation.md.url_transform
+-- function! s:get_replacement_patterns(path_old, path_new) abort " {{{1
+--   " Update "absolute" links (i.e. assume link is rooted)
+--   let l:root = wiki#get_root()
+--   let l:url_old = wiki#paths#to_wiki_url(a:path_old, l:root)
+--   let l:url_new = wiki#paths#to_wiki_url(a:path_new, l:root)
+--   " MY ADDITION
+--   " Apply g:wiki_link_creation.md.url_transform
+--   " Then produce a new string with problematic characters escaped
+--   let l:url_old = substitute(
+--         \ wiki#url#utils#url_encode(l:url_old),
+--         \ '%', '\\\%', 'g')
+--   let l:url_new = substitute(
+--         \ wiki#url#utils#url_encode(l:url_new),
+--         \ '%', '\\\%', 'g')
+--   " END ADDITION
+--   let l:url_pairs = [[l:url_old, l:url_new]]
+--
+--   " Update "relative" links (look within the specific common subdir)
+--   let l:subdirs = []
+--   let l:old_subdirs = split(l:url_old, '\/')[:-2]
+--   let l:new_subdirs = split(l:url_new, '\/')[:-2]
+--   while !empty(l:old_subdirs)
+--         \ && !empty(l:new_subdirs)
+--         \ && l:old_subdirs[0] ==# l:new_subdirs[0]
+--     call add(l:subdirs, remove(l:old_subdirs, 0))
+--     call remove(l:new_subdirs, 0)
+--   endwhile
+--   if !empty(l:subdirs)
+--     let l:root .= '/' .. join(l:subdirs, '/')
+--     let l:url_pairs += [[
+--           \ wiki#paths#to_wiki_url(a:path_old, l:root),
+--           \ wiki#paths#to_wiki_url(a:path_new, l:root)
+--           \]]
+--   endif
