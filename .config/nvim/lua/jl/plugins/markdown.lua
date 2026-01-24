@@ -6,7 +6,8 @@ return {
     ft = "markdown",
     opts = {
       enabled = true,
-      render_modes = { "n", "c", "v", "V", "\22", "no", "R", },
+      render_modes = true,
+      -- render_modes = { "i", "n", "c", "v", "V", "\22", "no", "R", }, -- \22 stands for Ctrl-v, see help mode()
       file_types = { "markdown" },
       -- latex = {
       --      enabled = true,
