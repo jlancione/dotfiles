@@ -76,7 +76,7 @@ return {
 }
 
 -- ** Bug Fix, in wiki.vim/autoload/wiki/link.vim
--- Otherwise a dominates and defaults gets overwritten,
+-- Otherwise a dominates and defaults gets overwritten, resulting in g:wiki_link_creation.md.link_text being executed but overwritten
 -- it is an ordering issue of extend()
 -- " Original
 -- "let l:options = extend(l:defaults, a:0 > 0 ? a:1 : {})
