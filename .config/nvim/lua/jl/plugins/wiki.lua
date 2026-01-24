@@ -8,11 +8,13 @@ return {
       URLResolver = function(x)
         local url = vim.deepcopy(x)
 
-        url.anchor = vim.fn["wiki#url#utils#extract_anchor"](url.stripped)
+        -- Decode first, then assign the anchor
+        local url_decoded = vim.fn["wiki#url#utils#url_decode"](url.stripped)
+        url.anchor = vim.fn["wiki#url#utils#extract_anchor"](url_decoded)
 
-        local path = vim.split(url.stripped, "#", { plain = true })[1]
-        path = vim.fn["wiki#url#utils#url_decode"](path)
-        url.path = vim.fn["wiki#url#utils#resolve_path"](path, url.origin) -- default resover
+        local path = vim.split(url_decoded, "#", { plain = true })[1]
+
+        url.path = vim.fn["wiki#url#utils#resolve_path"](path, url.origin) -- default resolver
 
         return url
       end
