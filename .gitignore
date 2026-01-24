@@ -1,5 +1,2 @@
 # ignore finder config files
 .DS_Store
-
-# aux file for nvim (auto created if deleted)
-lazy-lock.json
