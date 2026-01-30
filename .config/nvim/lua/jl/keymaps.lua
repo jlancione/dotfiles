@@ -34,8 +34,8 @@ keymap( "n", "<M-j>", ":m .+1<CR>==", "Drag down line" )
 keymap( "n", "<M-k>", ":m .-2<CR>==", "Drag up line"   )
 
 -- Indentation
-keymap("n", "<", "<S-v><<esc>", "Decrease indentation level" )
-keymap("n", ">", "<S-v>><esc>", "Increase indentation level" )
+keymap( "n", "<", "<S-v><<esc>", "Decrease indentation level" )
+keymap( "n", ">", "<S-v>><esc>", "Increase indentation level" )
 
 -- Utilities
 keymap( "n", "<leader>/", ":nohlsearch<CR>", "Kill search highlights" )
@@ -43,10 +43,23 @@ keymap( "n", "<leader>qq", ":qa<CR>", "[QQ]uit all" )
 
 -- Visual --
 -- Indent staying in visual mode
-keymap("v", "<", "<gv^", "Decrease indentation level, stay in V-mode" )
-keymap("v", ">", ">gv^", "Increase indentation level, stay in V-mode" )
-keymap("v", "p", '"_dP', "Delet selected region and paste" )
+keymap( "v", "<", "<gv^", "Decrease indentation level, stay in V-mode" )
+keymap( "v", ">", ">gv^", "Increase indentation level, stay in V-mode" )
+keymap( "v", "p", '"_dP', "Delet selected region and paste" )
 
 -- Move text up and down
-keymap("v", "<M-j>", ":m '>+1<CR>gv=gv", "Drag down line" )
-keymap("v", "<M-k>", ":m '<-2<CR>gv=gv", "Drag up line"   )
+keymap( "v", "<M-j>", ":m '>+1<CR>gv=gv", "Drag down line" )
+keymap( "v", "<M-k>", ":m '<-2<CR>gv=gv", "Drag up line"   )
+
+
+-- Remove clutter from insert mode
+keymap( "i", "<M-C-S-D-Space>", "<Nop>", "Unmap" )
+keymap( "i", "<M-C-S-D-B>", "<Nop>", "Unmap" )
+keymap( "i", "<M-C-S-D-'>", "<Nop>", "Unmap" )
+keymap( "i", "<M-C-S-D-,>", "<Nop>", "Unmap" )
+keymap( "i", "<M-C-S-D-.>", "<Nop>", "Unmap" )
+keymap( "i", "<M-C-S-D-/>", "<Nop>", "Unmap" )
+keymap( "i", "<M-C-S-D-=>", "<Nop>", "Unmap" )
+keymap( "i", "<M-C-S-D-\\>", "<Nop>", "Unmap" )
+keymap( "i", "<M-C-S-D-->", "<Nop>", "Unmap" )
+keymap( "i", "<M-C-S-D-;>", "<Nop>", "Unmap" )
