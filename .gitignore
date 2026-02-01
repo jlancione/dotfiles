@@ -1,2 +1,10 @@
-# ignore finder config files
+# Ignore finder config files
 .DS_Store
+
+# Ignore directories
+.config/dvorak-NO_option_keys.keylayout/
+.config/karabiner/
+.config/fish/
+# Reinclude config files
+!.config/karabiner/karabiner.json
+!.config/fish/config.fish
