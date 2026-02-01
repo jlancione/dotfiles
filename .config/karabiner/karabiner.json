@@ -66,7 +66,7 @@
                                     "key_code": "comma",
                                     "modifiers": { "mandatory": [] }
                                 },
-                                "to": [{ "shell_command": "open -a 'WhatsApp.app'" }],
+                                "to": [{ "shell_command": "export PATH=/opt/homebrew/bin:$PATH; open -na Alacritty.app --args --command nvim ~/wiki/index.md" }],
                                 "type": "basic"
                             },
                             {
@@ -97,7 +97,7 @@
                                             "value": 1
                                         }
                                     },
-                                    { "shell_command": "open -a 'WhatsApp.app'" }
+                                    { "shell_command": "export PATH=/opt/homebrew/bin:$PATH; open -na Alacritty.app --args --command nvim ~/wiki/index.md" }
                                 ],
                                 "type": "basic"
                             },
@@ -254,7 +254,7 @@
                                     "key_code": "n",
                                     "modifiers": { "mandatory": [] }
                                 },
-                                "to": [{ "shell_command": "open -a 'Google Chrome.app'" }],
+                                "to": [{ "shell_command": "open -a 'LibreWolf.app'" }],
                                 "type": "basic"
                             },
                             {
@@ -285,7 +285,7 @@
                                             "value": 1
                                         }
                                     },
-                                    { "shell_command": "open -a 'Google Chrome.app'" }
+                                    { "shell_command": "open -a 'LibreWolf.app'" }
                                 ],
                                 "type": "basic"
                             },
@@ -348,7 +348,7 @@
                                     "key_code": "k",
                                     "modifiers": { "mandatory": [] }
                                 },
-                                "to": [{ "shell_command": "open -a 'Alacritty.app'" }],
+                                "to": [{ "shell_command": "open -n -a 'Alacritty.app'" }],
                                 "type": "basic"
                             },
                             {
@@ -575,7 +575,7 @@
                                     "key_code": "m",
                                     "modifiers": { "mandatory": ["command"] }
                                 },
-                                "to": [{ "shell_command": "/bin/bash ~/.config/mute.sh" }],
+                                "to": [{ "shell_command": "/bin/bash ~/.config/scripts/mute.sh" }],
                                 "type": "basic"
                             },
                             {
@@ -667,38 +667,6 @@
                                         }
                                     ]
                                 },
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Option+Shift+ comma/period to Control+left/right_arrow (for spaces navigation)",
-                        "enabled": false,
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "w",
-                                    "modifiers": { "mandatory": ["left_shift", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "left_arrow",
-                                        "modifiers": ["left_control"]
-                                    }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "key_code": "e",
-                                    "modifiers": { "mandatory": ["left_shift", "left_option"] }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "right_arrow",
-                                        "modifiers": ["left_control"]
-                                    }
-                                ],
                                 "type": "basic"
                             }
                         ]

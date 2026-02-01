@@ -1,2 +1,5 @@
-require "user.core"
-require "user.bootstrap"
+require("jl.options")
+require("jl.keymaps")
+require("jl.autocommands")
+
+require("jl.lazy")

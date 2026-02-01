@@ -123,6 +123,7 @@ alias ls='eza --color=always --long --git'
 alias lt='eza --color=always -a --tree --level=2 --git'
 alias la='eza -a --color=always --long --git'
 alias ll='eza -a -g --color=always --long --git'
+alias cd='z'
 
 # for FZF keybindings
 fzf --fish | source
@@ -135,7 +136,9 @@ fzf --fish | source
 # nuke-dash/pokemon-colorscripts-mac
 # pokemon-colorscripts --random --no-title
 # clr
-fastfetch -c ~/.config/fastfetch/config.jsonc
+
+# initialize zoxide
+zoxide init fish | source
 
 ### SETTING THE STARSHIP PROMPT ###
 starship init fish | source
