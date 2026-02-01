@@ -1,6 +1,7 @@
 [terminal.shell]
 program = "/opt/homebrew/bin/fish"
 # args = ["string",] # arguments to be passed to the shell
+args = ["-c", "fastfetch -c ~/.config/fastfetch/config.jsonc && exec fish"]
 
 [cursor.style]
 # purtroppo da fish 4.0 con vim_keybindigs

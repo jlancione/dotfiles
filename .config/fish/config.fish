@@ -136,7 +136,6 @@ fzf --fish | source
 # nuke-dash/pokemon-colorscripts-mac
 # pokemon-colorscripts --random --no-title
 # clr
-fastfetch -c ~/.config/fastfetch/config.jsonc
 
 # initialize zoxide
 zoxide init fish | source
