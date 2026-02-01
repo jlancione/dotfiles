@@ -2,6 +2,9 @@ local conditions = require("heirline.conditions")
 local utils = require("heirline.utils")
 local Space = { flexible = 1, { provider = " " }, { provider = "" } }
 
+local active_color = "yellow"
+local inactive_color = "purple"
+
 -- StatusLine LEFT HAND SIDE --
 
 -- Child objects definitions
@@ -33,9 +36,9 @@ local FileName = {
   end,
   hl = function()
     if conditions.is_not_active() then
-      return { fg = "purple" }
+      return { fg = inactive_color }
     else
-      return { fg = "yellow" }
+      return { fg = active_color }
     end
   end,
 
@@ -86,14 +89,8 @@ local TerminalSign = {
     condition = function()
       return vim.bo.buftype == "terminal"
     end,
-    provider = " ",
+    provider = "  ",
     hl = { fg = "orange" },
-  },
-  { 
-    condition = function()
-      return vim.bo.buftype == "terminal"
-    end,
-    provider = " "
   },
 }
 
@@ -105,7 +102,13 @@ local HelpFileName = {
     local filename = vim.api.nvim_buf_get_name(0)
     return vim.fn.fnamemodify(filename, ":t")
   end,
-  hl = { fg = "yellow" },
+  hl = function ()
+    if conditions.is_not_active() then
+      return { fg = inactive_color }
+    else
+      return { fg = active_color }
+    end
+  end,
 }
 
 local FileType = {
