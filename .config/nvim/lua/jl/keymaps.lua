@@ -52,6 +52,19 @@ keymap( "v", "<M-j>", ":m '>+1<CR>gv=gv", "Drag down line" )
 keymap( "v", "<M-k>", ":m '<-2<CR>gv=gv", "Drag up line"   )
 
 
+-- Terminal --
+local job_id = 0 -- can be used for further keymaps, to control the terminal
+keymap( "n", "<leader>st", function()
+  vim.cmd.vnew()
+  vim.cmd.term()
+  job_id = vim.bo.channel
+  vim.fn.chansend(job_id, { "fish_default_key_bindings && clear\r" }) -- \r stands for <CR>
+  vim.cmd.wincmd("J") -- places the window at the bottom
+  vim.api.nvim_win_set_height(0,13)
+end,
+  "Open small terminal" )
+keymap( "t", "<Esc>", "<C-Bslash><C-N>", "[Esc]ape insert mode in terminal" )
+
 -- Remove clutter from insert mode
 keymap( "i", "<M-C-S-D-Space>", "<Nop>", "Unmap key" )
 keymap( "i", "<M-C-S-D-B>", "<Nop>", "Unmap key" )

@@ -34,11 +34,13 @@ local InactiveStatusLine = {
 local SpecialStatusLine = {
   condition = function()
     return conditions.buffer_matches({
-      buftype = { "nofile", "prompt", "help", "quickfix", },
+      -- inspect with :set filetype?
+      buftype = { "nofile", "prompt", "help", "quickfix", "terminal" },
       filetype = { "oil", },
     })
   end,
 
+  LeftHandSide.terminal_sign,
   LeftHandSide.file_type,
   Space,
   -- help and oil are mutually exclusive (filetypes)

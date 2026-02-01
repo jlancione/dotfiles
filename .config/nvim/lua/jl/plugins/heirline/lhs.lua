@@ -74,10 +74,26 @@ local FileFlags = {
   },
   {
     condition = function()
-      return not vim.bo.modifiable or vim.bo.readonly
+      return ( not vim.bo.modifiable or vim.bo.readonly ) and vim.bo.buftype ~= "terminal"
     end,
     provider = "",
     hl = { fg = "orange" },
+  },
+}
+
+local TerminalSign = {
+  {
+    condition = function()
+      return vim.bo.buftype == "terminal"
+    end,
+    provider = " ",
+    hl = { fg = "orange" },
+  },
+  { 
+    condition = function()
+      return vim.bo.buftype == "terminal"
+    end,
+    provider = " "
   },
 }
 
@@ -93,10 +109,14 @@ local HelpFileName = {
 }
 
 local FileType = {
-    provider = function()
-        return string.upper(vim.bo.filetype)
-    end,
-    hl = { fg = "blue", bold = true },
+  provider = function()
+    if vim.bo.filetype ~= "" then
+      return string.upper(vim.bo.filetype)
+    else 
+      return string.upper(vim.bo.buftype)
+    end
+  end,
+  hl = { fg = "blue", bold = true },
 }
 
 local OilCurrentDir = {
@@ -133,6 +153,7 @@ local lhs = {
   file_type = FileType,
   help_file_name = HelpFileName,
   oil_current_dir = OilCurrentDir,
+  terminal_sign = TerminalSign,
 }
 
 
