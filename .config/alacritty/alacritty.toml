@@ -1,16 +1,16 @@
 [terminal.shell]
 program = "/opt/homebrew/bin/fish"
 # args = ["string",] # arguments to be passed to the shell
+# args = ["-c", "fastfetch -c ~/.config/fastfetch/config.jsonc && fish_default_key_bindings && exec fish"]
 args = ["-c", "fastfetch -c ~/.config/fastfetch/config.jsonc && exec fish"]
 
 [cursor.style]
-# purtroppo da fish 4.0 con vim_keybindigs
 shape = "Block"
 blinking = "Off"
 
 [cursor.vi_mode_style]
 shape = "Block"
-blinking = "Always"
+blinking = "Off"
 
 [colors]
 draw_bold_text_with_bright_colors = true
