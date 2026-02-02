@@ -62,8 +62,9 @@ keymap( "n", "<leader>st", function()
   vim.cmd.wincmd("J") -- places the window at the bottom
   vim.api.nvim_win_set_height(0,13)
 end,
-  "Open small terminal" )
+  "Open [S]mall [T]erminal" )
 keymap( "t", "<Esc>", "<C-Bslash><C-N>", "[Esc]ape insert mode in terminal" )
+
 
 -- Remove clutter from insert mode
 keymap( "i", "<M-C-S-D-Space>", "<Nop>", "Unmap key" )
