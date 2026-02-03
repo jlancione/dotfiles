@@ -15,13 +15,13 @@ return {
         menu = {
           -- manually trigger completion on some filetypes, with C-space
           auto_show = function()
-            return not vim.tbl_contains({ "markdown", "tex" }, vim.bo.filetype)
+            return not vim.tbl_contains({ "markdown" }, vim.bo.filetype)
           end
         },
       },
 
       sources = {
-        default = { "path" }, -- "lsp", "snippets", "buffer", "omni" }, -- omni is used by wiki completion
+        default = { "path", "lsp" }, -- "snippets", "buffer", "omni" }, -- omni is used by wiki completion
       },
 
       fuzzy = { implementation = "prefer_rust_with_warning" }
