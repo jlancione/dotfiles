@@ -19,6 +19,7 @@ local DefaultStatusLine = {
   LeftHandSide.file_flags,
   Align,
   RightHandSide.lazy,
+  RightHandSide.lsp_diagnostics,
   Space,
   RightHandSide.ruler,
 }
@@ -27,6 +28,8 @@ local InactiveStatusLine = {
   condition = conditions.is_not_active,
   hl = { fg = "gray" },
   LeftHandSide.file_name,
+  Space,
+  LeftHandSide.file_flags,
   { provider = "%<" },
   Align,
 }
