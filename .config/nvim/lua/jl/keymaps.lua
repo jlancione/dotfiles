@@ -63,9 +63,14 @@ keymap( "n", "<leader>st", function()
   vim.api.nvim_win_set_height(0,8)
 end,
   "Open [S]mall [T]erminal" )
+
 keymap( "t", "<Esc>", "<C-Bslash><C-N>", "[Esc]ape insert mode in terminal" )
 
+-- Miscellanea --
+-- Spell
 keymap( "n", "<leader>sp", ":setlocal spell spelllang=en_gb<CR>:echo 'Spell ON'<CR>", "Launch [SP]ell" )
+-- Zotero
+keymap( "n", "<leader>fc", ":Telescope bibtex format_string=\\cite{%s}<CR>", "[F]ind [C]itation" )
 
 
 -- Remove clutter from insert mode
