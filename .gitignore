@@ -1,6 +1,9 @@
 # Ignore finder config files
 .DS_Store
 
+# Ignore custom spell directory
+spell/
+
 # Ignore directories
 .config/dvorak-NO_option_keys.keylayout/
 .config/karabiner/
