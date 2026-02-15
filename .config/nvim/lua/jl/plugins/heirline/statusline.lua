@@ -38,7 +38,7 @@ local SpecialStatusLine = {
   condition = function()
     return conditions.buffer_matches({
       -- inspect with :set filetype?
-      buftype = { "nofile", "prompt", "help", "quickfix", "terminal" },
+      buftype = { "nofile", "prompt", "help", "quickfix", "terminal", },
       filetype = { "oil", },
     })
   end,
@@ -49,7 +49,14 @@ local SpecialStatusLine = {
   -- help and oil are mutually exclusive (filetypes)
   LeftHandSide.help_file_name,
   LeftHandSide.oil_current_dir,
-  Space,
+  { -- checkhealth has no filename, this prevents the double space
+    condition = function()
+      return not conditions.buffer_matches({
+        filetype = { "checkhealth" },
+    })
+    end,
+    Space,
+  },
   LeftHandSide.file_flags,
   Align,
 }
