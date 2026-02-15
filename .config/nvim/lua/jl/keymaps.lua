@@ -61,6 +61,7 @@ keymap( "n", "<leader>st", function()
   vim.fn.chansend(job_id, { "fish_default_key_bindings && clear\r" }) -- \r stands for <CR>
   vim.cmd.wincmd("J") -- places the window at the bottom
   vim.api.nvim_win_set_height(0,8)
+  vim.cmd.startinsert()
 end,
   "Open [S]mall [T]erminal" )
 
