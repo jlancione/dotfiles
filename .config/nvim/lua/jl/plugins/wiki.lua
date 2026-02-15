@@ -75,7 +75,7 @@ return {
   }
 }
 
--- ** Bug Fix, in wiki.vim/autoload/wiki/link.vim
+-- ** Bug Fix, in ~/.local/share/nvim/lazy/wiki.vim/autoload/wiki/link.vim
 -- Otherwise a dominates and defaults gets overwritten, resulting in g:wiki_link_creation.md.link_text being executed but overwritten
 -- it is an ordering issue of extend()
 -- " Original
@@ -84,7 +84,7 @@ return {
 -- let l:options = extend(a:0 > 0 ? a:1 : {}, l:defaults)
 
 
--- ** Tweak to the plugin, in wiki.vim/autotload/wiki/pages.vim
+-- ** Tweak to the plugin, in ~/.local/share/nvim/lazy/wiki.vim/autoload/wiki/page.vim
 -- WikiPageRename reads and writes encoded URLs
 -- Otherwise it cannot change incoming links to the renamed page
 -- because it is a string substitution, but it does not apply g:wiki_link_creation.md.url_transform
