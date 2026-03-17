@@ -3,6 +3,7 @@ return {
     "lervag/wiki.vim",
     init = function()  -- not `config` because it needs to run before loading the plugin
       vim.g.wiki_root = "~/wiki"
+      vim.g.wiki_zotero_root = "~/Zotero"
 
       -- Encode/Decode URLs, then use the default resolver
       URLResolver = function(x)
@@ -62,6 +63,7 @@ return {
       vim.g.wiki_viewer = {
         md = ":edit", wiki = ":edit",  -- defaults
         tex = ":edit",
+        zot = "open",
         _ = "open"  -- fallback
       }
 
@@ -69,7 +71,7 @@ return {
         -- keymaps
         keymap("n", "<c-CR>", ":vertical WikiLinkFollowSplit<CR>",  { desc = "Open wiki link in split" })
         keymap("n", "<leader>lk", "<plug>(wiki-link-add)", { desc = "[L]in[K] add" })
-        keymap("i", "<c-l>", "<plug>(wiki-link-add)", { desc = "[L]in[K] add" })
+        keymap("i", "<c-l>", "<plug>(wiki-link-add)", { desc = "[L]ink add" })
         keymap("n", "<leader>ow", "<plug>(wiki-pages)", { desc = "[O]pen [W]iki Page" })
     end
   }
