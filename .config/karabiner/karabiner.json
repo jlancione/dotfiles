@@ -110,6 +110,53 @@
                                     }
                                 ],
                                 "from": {
+                                    "key_code": "c",
+                                    "modifiers": { "mandatory": [] }
+                                },
+                                "to": [{ "shell_command": "export PATH=/opt/homebrew/bin:$PATH; open -na Alacritty.app --args --command nvim '+WikiJournal'" }],
+                                "type": "basic"
+                            },
+                            {
+                                "from": {
+                                    "modifiers": { "mandatory": [] },
+                                    "simultaneous": [
+                                        { "key_code": "q" },
+                                        { "key_code": "c" }
+                                    ],
+                                    "simultaneous_options": {
+                                        "key_down_order": "strict",
+                                        "key_up_order": "strict_inverse",
+                                        "to_after_key_up": [
+                                            {
+                                                "set_variable": {
+                                                    "name": "launcher_mode_v4",
+                                                    "value": 0
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
+                                "to": [
+                                    {
+                                        "set_variable": {
+                                            "name": "launcher_mode_v4",
+                                            "value": 1
+                                        }
+                                    },
+                                    { "shell_command": "export PATH=/opt/homebrew/bin:$PATH; open -na Alacritty.app --args --command nvim '+WikiJournal'" }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "launcher_mode_v4",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
                                     "key_code": "i",
                                     "modifiers": { "mandatory": [] }
                                 },
