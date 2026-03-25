@@ -111,11 +111,8 @@ alias skim='/Applications/Skim.app/Contents/MacOS/Skim'
 alias root='root -l'
 alias config='/opt/homebrew/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
-# to launch the venv for python in Mac (all because of homebrew)
-# to create a virtual env run:   python<version> -m venv path/to/venv
-# python3 -m venv ~/Pyvenv
-# root version may change in future so remember 
-alias pyenv='source ~/Pyvenv/bin/activate.fish; source /opt/homebrew/Cellar/root/6.34.08_1/bin/thisroot.fish'
+# To launch the venv for python in Mac (all because of homebrew)
+alias pyenv='source ~/Pyvenv/bin/activate.fish; source /opt/homebrew/Cellar/root/6.38.04/bin/thisroot.fish'
 
 alias rm='rm -i' # for safety reasons
 
