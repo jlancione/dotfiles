@@ -10,7 +10,8 @@ return {
       -- vim.lsp.set_log_level("debug")
       vim.diagnostic.config({ virtual_text = true })
 
-      vim.lsp.config("lua_ls", {  -- suppress warning Undefined global `vim`
+      -- Custom configurations
+      vim.lsp.config("lua_ls", {  -- prevent warning Undefined global `vim`
         settings = {
           Lua = {
             diagnostics = { globals = { "vim" } }
