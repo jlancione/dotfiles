@@ -222,6 +222,10 @@ run = 'layout floating'
 if.app-name-regex-substring = 'root'
 run = 'layout floating'
 
+[[on-window-detected]]
+# to have ROOT plots floating
+if.app-name-regex-substring = 'python'
+run = 'layout floating'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'LaTeXiT'
