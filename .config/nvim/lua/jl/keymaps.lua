@@ -92,10 +92,15 @@ keymap( {"n", "t"}, "<leader>tt", function()
 keymap( "n", "<leader>x", function()
     local bufname = vim.api.nvim_buf_get_name(0) -- works only if you trigger it from the project file, not from the terminal
     local filename = vim.fn.fnamemodify(bufname, ":t:r")
+    local pyvenv_state = os.getenv("VIRTUAL_ENV") -- are we already inside a virtual environment?
+
     if not vim.api.nvim_win_is_valid(terminal_state.win) then
       terminal_state = create_split(terminal_state)
       if vim.bo[terminal_state.buf].buftype ~= "terminal" then
         launch_terminal()
+      end
+      if pyvenv_state == nil then
+        vim.fn.chansend(job_id, { "pyenv\r" })
       end
     end
 
