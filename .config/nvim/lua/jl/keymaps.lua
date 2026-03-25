@@ -54,16 +54,16 @@ keymap( "v", "<M-k>", ":m '<-2<CR>gv=gv", "Drag up line"   )
 
 -- Terminal --
 local job_id = nil -- can be used for further keymaps, to control the terminal
-local state = { buf = -1, win = -1 } -- invalid buf and win, 0 stands for current buf/win
+local terminal_state = { buf = -1, win = -1 } -- invalid buf and win, 0 stands for current buf/win
 
-local function create_win(opts)
+local function create_split(opts)
   opts = opts or {}
 
   local buf = nil
   if vim.api.nvim_buf_is_valid(opts.buf) then
     buf = opts.buf
   else
-    buf = vim.api.nvim_create_buf( false, true ) -- Not listed, scratch buffer 
+    buf = vim.api.nvim_create_buf( false, true ) -- Not listed(?), scratch buffer 
   end
 
   local win = vim.api.nvim_open_win( buf, true, { split="below", height = 8, win = 0 })
@@ -76,25 +76,25 @@ local function launch_terminal()
   vim.fn.chansend(job_id, { "fish_default_key_bindings && clear\r" }) -- \r stands for <CR>
 end
 
-keymap( {"n", "t"}, "<leader>st", function()
-    if not vim.api.nvim_win_is_valid(state.win) then
-      state = create_win(state)
-      if vim.bo[state.buf].buftype ~= "terminal" then
+keymap( {"n", "t"}, "<leader>tt", function()
+    if not vim.api.nvim_win_is_valid(terminal_state.win) then
+      terminal_state = create_split(terminal_state)
+      if vim.bo[terminal_state.buf].buftype ~= "terminal" then
         launch_terminal()
       end
       vim.cmd.startinsert()
     else
-      vim.api.nvim_win_hide(state.win)
+      vim.api.nvim_win_hide(terminal_state.win)
     end
   end,
-  "Toggle [S]mall [T]erminal" )
+  "[T]oggle [T]erminal" )
 
 keymap( "n", "<leader>x", function()
-    local bufname = vim.api.nvim_buf_get_name(0) -- it works only if you trigger it from the project file, not from the terminal
+    local bufname = vim.api.nvim_buf_get_name(0) -- works only if you trigger it from the project file, not from the terminal
     local filename = vim.fn.fnamemodify(bufname, ":t:r")
-    if not vim.api.nvim_win_is_valid(state.win) then
-      state = create_win(state)
-      if vim.bo[state.buf].buftype ~= "terminal" then
+    if not vim.api.nvim_win_is_valid(terminal_state.win) then
+      terminal_state = create_split(terminal_state)
+      if vim.bo[terminal_state.buf].buftype ~= "terminal" then
         launch_terminal()
       end
     end
