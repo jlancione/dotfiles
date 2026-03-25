@@ -53,17 +53,57 @@ keymap( "v", "<M-k>", ":m '<-2<CR>gv=gv", "Drag up line"   )
 
 
 -- Terminal --
-local job_id = 0 -- can be used for further keymaps, to control the terminal
-keymap( "n", "<leader>st", function()
-  vim.cmd.vnew()
-  vim.cmd.term()
+local job_id = nil -- can be used for further keymaps, to control the terminal
+local state = { buf = -1, win = -1 } -- invalid buf and win, 0 stands for current buf/win
+
+local function create_win(opts)
+  opts = opts or {}
+
+  local buf = nil
+  if vim.api.nvim_buf_is_valid(opts.buf) then
+    buf = opts.buf
+  else
+    buf = vim.api.nvim_create_buf( false, true ) -- Not listed, scratch buffer 
+  end
+
+  local win = vim.api.nvim_open_win( buf, true, { split="below", height = 8, win = 0 })
+  return { buf = buf, win = win }
+end
+
+local function launch_terminal()
+  vim.cmd.terminal()
   job_id = vim.bo.channel
   vim.fn.chansend(job_id, { "fish_default_key_bindings && clear\r" }) -- \r stands for <CR>
-  vim.cmd.wincmd("J") -- places the window at the bottom
-  vim.api.nvim_win_set_height(0,8)
-  vim.cmd.startinsert()
+end
+
+keymap( {"n", "t"}, "<leader>st", function()
+    if not vim.api.nvim_win_is_valid(state.win) then
+      state = create_win(state)
+      if vim.bo[state.buf].buftype ~= "terminal" then
+        launch_terminal()
+      end
+      vim.cmd.startinsert()
+    else
+      vim.api.nvim_win_hide(state.win)
+    end
+  end,
+  "Toggle [S]mall [T]erminal" )
+
+keymap( "n", "<leader>x", function()
+    local bufname = vim.api.nvim_buf_get_name(0) -- it works only if you trigger it from the project file, not from the terminal
+    local filename = vim.fn.fnamemodify(bufname, ":t:r")
+    if not vim.api.nvim_win_is_valid(state.win) then
+      state = create_win(state)
+      if vim.bo[state.buf].buftype ~= "terminal" then
+        launch_terminal()
+      end
+    end
+
+    vim.fn.chansend(job_id, { "python3 -i " .. filename .. ".py\r" })
+    vim.cmd.startinsert()
 end,
-  "Open [S]mall [T]erminal" )
+  "E[X]ecute python script" )
+
 
 keymap( "t", "<Esc>", "<C-Bslash><C-N>", "[Esc]ape insert mode in terminal" )
 
