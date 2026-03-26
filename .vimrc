@@ -140,7 +140,7 @@ if version >= 703
     set undoreload=10000
 endif
 
-" This script makes that cursor line is displayed only in active split window
+" Cursor line is displayed only in active split window
 " (uncomment cursorcolumn and nocursorcolumn if it is activated)
 augroup cursor_off
     autocmd!
