@@ -63,10 +63,10 @@ local function create_split(opts)
   if vim.api.nvim_buf_is_valid(opts.buf) then
     buf = opts.buf
   else
-    buf = vim.api.nvim_create_buf( false, true ) -- Not listed(?), scratch buffer 
+    buf = vim.api.nvim_create_buf( false, true ) -- Not listed(?), scratch buffer (ie a NOFILE)
   end
 
-  local win = vim.api.nvim_open_win( buf, true, { split = "below", height = 8, win = 0 })
+  local win = vim.api.nvim_open_win( buf, false, { split = "below", height = 8, win = 0 })
   return { buf = buf, win = win }
 end
 
@@ -79,6 +79,7 @@ end
 keymap( {"n", "t"}, "<leader>tt", function()
     if not vim.api.nvim_win_is_valid(terminal_state.win) then
       terminal_state = create_split(terminal_state)
+      vim.fn.win_gotoid(terminal_state.win)
       if vim.bo[terminal_state.buf].buftype ~= "terminal" then
         launch_terminal()
       end
@@ -92,20 +93,20 @@ keymap( {"n", "t"}, "<leader>tt", function()
 keymap( "n", "<leader>x", function()
     local bufname = vim.api.nvim_buf_get_name(0) -- works only if you trigger it from the project file, not from the terminal
     local filename = vim.fn.fnamemodify(bufname, ":t:r")
-    local pyvenv_state = os.getenv("VIRTUAL_ENV") -- are we already inside a virtual environment?
+    local current_win = vim.fn.win_getid()
 
     if not vim.api.nvim_win_is_valid(terminal_state.win) then
       terminal_state = create_split(terminal_state)
       if vim.bo[terminal_state.buf].buftype ~= "terminal" then
+        vim.fn.win_gotoid(terminal_state.win)
         launch_terminal()
-      end
-      if pyvenv_state == nil then
         vim.fn.chansend(job_id, { "pyenv\r" })
+        vim.fn.win_gotoid(current_win)
       end
     end
 
     vim.fn.chansend(job_id, { "python " .. filename .. ".py\r" })
-    -- vim.cmd.startinsert()
+
 end,
   "E[X]ecute python script" )
 
