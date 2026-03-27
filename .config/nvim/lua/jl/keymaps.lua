@@ -66,7 +66,7 @@ local function create_split(opts)
     buf = vim.api.nvim_create_buf( false, true ) -- Not listed(?), scratch buffer 
   end
 
-  local win = vim.api.nvim_open_win( buf, true, { split="below", height = 8, win = 0 })
+  local win = vim.api.nvim_open_win( buf, true, { split = "below", height = 8, win = 0 })
   return { buf = buf, win = win }
 end
 
@@ -104,8 +104,8 @@ keymap( "n", "<leader>x", function()
       end
     end
 
-    vim.fn.chansend(job_id, { "python3 -i " .. filename .. ".py\r" })
-    vim.cmd.startinsert()
+    vim.fn.chansend(job_id, { "python " .. filename .. ".py\r" })
+    -- vim.cmd.startinsert()
 end,
   "E[X]ecute python script" )
 
