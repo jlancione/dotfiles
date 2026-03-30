@@ -39,7 +39,13 @@ keymap( "n", ">", "<S-v>><esc>", "Increase indentation level" )
 
 -- Utilities
 keymap( "n", "<leader>/", ":nohlsearch<CR>", "Kill search highlights" )
-keymap( "n", "<leader>qq", ":qa<CR>", "[QQ]uit all" )
+
+-- Diagnostics
+keymap("n", "<leader>dp", function() vim.diagnostic.jump({count=-1, float=true}) end, "Go to [P]revious diagnostic message")
+keymap("n", "<leader>dn", function() vim.diagnostic.jump({count=1, float=true}) end, "Go to [N]ext diagnostic message")
+keymap("n", "<leader>de", vim.diagnostic.open_float, "Show diagnostic [E]rror message")
+keymap("n", "<leader>dq", vim.diagnostic.setloclist, "Open diagnostic [Q]uickfix list")
+
 
 -- Visual --
 -- Indent staying in visual mode
@@ -92,7 +98,7 @@ keymap( {"n", "t"}, "<leader>tt", function()
 
 keymap( "n", "<leader>x", function()
     local bufname = vim.api.nvim_buf_get_name(0) -- works only if you trigger it from the project file, not from the terminal
-    local filename = vim.fn.fnamemodify(bufname, ":t:r")
+    local filename = vim.fn.fnamemodify(bufname, ":r")
     local current_win = vim.fn.win_getid()
 
     if not vim.api.nvim_win_is_valid(terminal_state.win) then
