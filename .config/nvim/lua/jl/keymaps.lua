@@ -106,6 +106,7 @@ keymap( "n", "<leader>x", function()
       if vim.bo[terminal_state.buf].buftype ~= "terminal" then
         vim.fn.win_gotoid(terminal_state.win)
         launch_terminal()
+     -- launch the virtual environment only if the terminal has never been opened, otherwise launch it manually
         vim.fn.chansend(job_id, { "pyenv\r" })
         vim.fn.win_gotoid(current_win)
       end
