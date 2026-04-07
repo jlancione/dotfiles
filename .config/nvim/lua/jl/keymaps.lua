@@ -97,6 +97,7 @@ keymap( {"n", "t"}, "<leader>tt", function()
   "[T]oggle [T]erminal" )
 
 keymap( "n", "<leader>x", function()
+    vim.cmd.write()
     local bufname = vim.api.nvim_buf_get_name(0) -- works only if you trigger it from the project file, not from the terminal
     local filename = vim.fn.fnamemodify(bufname, ":r")
     local current_win = vim.fn.win_getid()
