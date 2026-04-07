@@ -112,7 +112,7 @@ alias root='root -l'
 alias config='/opt/homebrew/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
 
 # To launch the venv for python in Mac (all because of homebrew)
-alias pyenv='source ~/Pyvenv/bin/activate.fish; source /opt/homebrew/Cellar/root/6.38.04/bin/thisroot.fish'
+alias pyenv='source ~/.pyvenv/bin/activate.fish; source /opt/homebrew/Cellar/root/6.38.04/bin/thisroot.fish'
 
 alias rm='rm -i' # for safety reasons
 
