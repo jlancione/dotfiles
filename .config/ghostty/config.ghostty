@@ -1,0 +1,34 @@
+macos-titlebar-style = hidden
+macos-window-shadow = false
+macos-option-as-alt = left
+
+quit-after-last-window-closed = true
+
+working-directory = ~/
+
+window-padding-x = 6
+window-padding-y = 3
+
+font-size = 13
+term = xterm-256
+bold-color = bright
+
+# normal
+palette = 0=#3B4252
+palette = 1=#BF616A
+palette = 2=#A3BE8C
+palette = 3=#EBCB8B
+palette = 4=#81A1C1
+palette = 5=#B48EAD
+palette = 6=#88C0D0
+palette = 7=#abb2bf
+
+# bright
+palette = 8=#5c6370
+palette = 9=#e06c75
+palette = 10=#98c379
+palette = 11=#d19a66
+palette = 12=#61afef
+palette = 13=#c678dd
+palette = 14=#56b6c2
+palette = 15=#ECEFF4
