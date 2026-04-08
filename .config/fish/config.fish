@@ -1,38 +1,18 @@
-# if status is-interactive
-    # Commands to run in interactive sessions can go here
-# end
-#
-# Preso pezzi da DT, ma non e' tutto il suo config.fish
-
 fish_add_path /opt/homebrew/bin
-fish_add_path /Library/TeX/texbin
 fish_add_path /usr/local/bin/ 
-fish_add_path /Users/jacopolancione/Documents/Uni/Algoritmi/gPLUTO/
 
-### EXPORT ###
-set fish_greeting                                 # Supresses fish's intro message
-set TERM "xterm-256color"                         # Sets the terminal type
-# set EDITOR "emacsclient -t -a ''"                 # $EDITOR use Emacs in terminal
-# set VISUAL "emacsclient -c -a emacs"              # $VISUAL use Emacs in GUI mode
-set PLUTO_DIR $HOME/Documents/Uni/Algoritmi/gPLUTO/
+set fish_greeting               # Supresses fish's intro message
+set TERM "xterm-256color"       # Sets the terminal type
 
-### SET EITHER DEFAULT EMACS MODE OR VI MODE ###
+### Set either default emacs mode or vi mode ###
 function fish_user_key_bindings
   #fish_default_key_bindings
   fish_vi_key_bindings
 end
-### END OF VI MODE ###
+### End of VI Mode ###
 
-### AUTOCOMPLETE AND HIGHLIGHT COLORS ###
-# set fish_color_normal brcyan
-# set fish_color_autosuggestion '#7d7d7d'
-# set fish_color_command brcyan
-# set fish_color_error '#ff6c6b'
-# set fish_color_param brcyan
-
-### FUNCTIONS ###
-
-## SPARK ##
+### Functions ###
+## Spark ##
 function spark --description Sparklines
     argparse --ignore-unknown --name=spark v/version h/help m/min= M/max= -- $argv || return
 
@@ -66,46 +46,17 @@ function spark --description Sparklines
         ' && echo
     end
 end
-## SPARK END ##
+## Spark end ##
 
-# Functions needed for !! and !$
-function __history_previous_command
-  switch (commandline -t)
-  case "!"
-    commandline -t $history[1]; commandline -f repaint
-  case "*"
-    commandline -i !
-  end
-end
-
-function __history_previous_command_arguments
-  switch (commandline -t)
-  case "!"
-    commandline -t ""
-    commandline -f history-token-search-backward
-  case "*"
-    commandline -i '$'
-  end
-end
-
-# function to flatten pdf (add annotations to pdf stream)
+# Flatten annotated pdf (add annotations to pdf stream)
 function flatten 
-  # qua si potrebbe aggiungere un automatismo: fornire un solo argomento e avere direttamente come nome dl'output qlo dl'input-flat
+  # E.g. flatten annotated.pdf annotated-flat.pdf
   gs -dSAFER -dBATCH -dNOPAUSE -dNOCACHE -sDEVICE=pdfwrite -dPreserveAnnots=false \
-     -sOutputFile=$argv[2] $argv[1]
+    -sOutputFile=$argv[2] $argv[1]
 end
 
 
-# The bindings for !! and !$
-if [ "$fish_key_bindings" = "fish_vi_key_bindings" ];
-  bind -Minsert ! __history_previous_command
-  bind -Minsert '$' __history_previous_command_arguments
-else
-  bind ! __history_previous_command
-  bind '$' __history_previous_command_arguments
-end
-
-### ALIASES ###
+### Aliases ###
 alias clr='clear; echo; echo; seq 1 (tput cols) | sort -R | spark | lolcat; echo'
 alias skim='/Applications/Skim.app/Contents/MacOS/Skim'
 alias root='root -l'
@@ -122,20 +73,9 @@ alias la='eza -a --color=always --long --git'
 alias ll='eza -a -g --color=always --long --git'
 alias cd='z'
 
-# for FZF keybindings
+## Initializations ##
+# fzf keybindings
 fzf --fish | source
 
-### RANDOM COLOR SCRIPT ###
-# Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
-# Or install it from the Arch User Repository: shell-color-scripts
-# colorscript random
-
-# nuke-dash/pokemon-colorscripts-mac
-# pokemon-colorscripts --random --no-title
-# clr
-
-# initialize zoxide
 zoxide init fish | source
-
-### SETTING THE STARSHIP PROMPT ###
 starship init fish | source
