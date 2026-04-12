@@ -3,6 +3,7 @@ fish_add_path /usr/local/bin/
 
 set fish_greeting               # Supresses fish's intro message
 set TERM "xterm-256color"       # Sets the terminal type
+set -gx EDITOR nvim
 
 ### Set either default emacs mode or vi mode ###
 function fish_user_key_bindings
