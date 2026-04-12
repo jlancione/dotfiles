@@ -1,7 +1,5 @@
 [terminal.shell]
 program = "/opt/homebrew/bin/fish"
-# args = ["string",] # arguments to be passed to the shell
-# args = ["-c", "fastfetch -c ~/.config/fastfetch/config.jsonc && fish_default_key_bindings && exec fish"]
 args = ["-c", "fastfetch -c ~/.config/fastfetch/config.jsonc && exec fish"]
 
 [cursor.style]
@@ -16,16 +14,6 @@ blinking = "Off"
 draw_bold_text_with_bright_colors = true
 
 [colors.bright]
-# dt theme (cold colors, mostly blues)
-# black = "#5b6268"
-# blue = "#3071db"
-# cyan = "#46d9ff"
-# green = "#4db5bd"
-# magenta = "#a9a1e1"
-# red = "#da8548"
-# white = "#dfdfdf"
-# yellow = "#ecbe7b"
-
 # benbrast theme
 black = "#5c6370"
 red = "#e06c75"
@@ -41,16 +29,6 @@ cursor = "#528bff"
 text = "CellBackground"
 
 [colors.normal]
-# dt theme (cold colors, mostly blues)
-# black = "#1c1f24"
-# blue = "#51afef"
-# cyan = "#5699af"
-# green = "#98be65"
-# magenta = "#c678dd"
-# red = "#ff6c6b"
-# white = "#abb2bf"
-# yellow = "#da8548"
-
 # benbrast theme
 black = "#3B4252"
 red = "#BF616A"
@@ -63,10 +41,6 @@ white = "#abb2bf"
 
 
 [colors.primary]
-# dt theme (cold colors, mostly blues)
-# background = "#282c34"
-# foreground = "#bbc2cf"
-
 # benbrast theme
 background= "#1e2127"
 # background= "#2E3440"
@@ -84,22 +58,18 @@ size = 13.0
 
 [font.bold]
 family = "JetBrainsMono Nerd Font"
-# family = "Maple Mono"
 style = "Bold"
 
 [font.bold_italic]
 family = "JetBrainsMono Nerd Font"
-# family = "Maple Mono" 
 style = "Bold Italic"
 
 [font.italic]
 family = "JetBrainsMono Nerd Font"
-# family = "Maple Mono"
 style = "Italic"
 
 [font.normal]
 family = "JetBrainsMono Nerd Font"
-# family = "Maple Mono"
 style = "Regular"
 
 [font.offset]
@@ -140,11 +110,6 @@ mods = "Control"
 action = "DecreaseFontSize"
 key = "Minus"
 mods = "Control"
-
-[[keyboard.bindings]]
-action = "ToggleFullscreen"
-key = "F11"
-mods = "None"
 
 [[keyboard.bindings]]
 action = "Paste"
