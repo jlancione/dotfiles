@@ -1,0 +1,138 @@
+/* Copy in Vimium options, in CSS for Vimium UI */
+/* Tweaked version of https://github.com/chars-mc/vimium-horizon-theme/blob/main/styles.css */
+:root {
+	--vimium-font-family: -apple-system, Inter, system-ui;
+	--vimium-font-size: 16px;
+  --vimium-font-size-sm: 15px;
+
+  --vimium-clr-bg-primary: #16161C;
+  --vimium-clr-bg-secondary: #4D443F;
+
+	--vimium-clr-primary: #F09383;
+	--vimium-clr-white: #FDF0ED;
+  --vimium-clr-grey: #2E303E;
+
+  --vimium-clr-bg-hint: #FBCD2B;
+
+  --vimium-clr-url-primary: #1EAEAE;
+  --vimium-clr-url-secondary: #21BFC2;
+}
+
+/* Hints */
+.vimiumHintMarker {
+  background: var(--vimium-clr-bg-hint) !important;
+  padding: 4px 5px !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.vimiumHintMarker span {
+	color: var(--vimium-clr-bg-primary) !important; 
+	font-family: var(--vimium-font-family) !important;
+	text-shadow: none !important;
+}
+
+.vimiumHintMarker .matchingCharacter {
+  opacity: 0.3;
+}
+
+.vimiumHintMarker .matchingCharacter ~ span {
+	color: var(--vimium-clr-bg-primary) !important;
+}
+
+/* Vomnibar */
+#vomnibar {
+  max-width: 900px;
+	background-color: var(--vimium-clr-bg-primary);
+	border: none;
+	box-shadow: none;
+
+  overflow: hidden;
+
+  position: relative;
+  margin-inline: auto;
+
+  animation: 200ms ease-in-out forwards show;
+}
+
+#vomnibar-search-area {
+  background-color: transparent !important;
+  padding: 10px 30px !important;
+  border: none;
+}
+
+#vomnibar-search-area input {
+  color: var(--vimium-clr-white) !important;
+  font-family: var(--vimium-font-family) !important;
+  font-size: var(--vimium-font-size) !important;
+  background-color: transparent !important;
+  border: none !important;
+  padding: 0px !important;
+  box-shadow: none !important;
+}
+#vomnibar-search-area input::selection {
+  background-color: var(--vimium-clr-primary) !important;
+  color: var(--vimium-clr-grey) !important;
+}
+
+@keyframes show {
+  0% {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* list items */
+#vomnibar li {
+  border-bottom: none !important;
+  border-top: 1px solid var(--vimium-clr-grey);
+}
+#vomnibar li.selected {
+  background-color: var(--vimium-clr-bg-secondary);
+}
+#vomnibar span {
+  font-family: var(--vimium-font-family);
+  font-size: var(--vimium-font-size) !important;
+}
+
+/* source */
+#vomnibar .source {
+  color: var(--vimium-clr-white) !important;
+  opacity: .6;
+}
+
+/* title */
+#vomnibar .title {
+  color: var(--vimium-clr-white) !important;
+}
+#vomnibar .title .match {
+  color: var(--vimium-clr-primary) !important;
+}
+
+/* url */
+#vomnibar .url {
+  color: var(--vimium-clr-url-primary) !important;
+  font-family: var(--vimium-font-family) !important;
+  font-size: var(--vimium-font-size-sm) !important;
+}
+#vomnibar .url .match {
+  color: var(--vimium-clr-url-secondary) !important;
+}
+
+/* HUD */
+#hud-container {
+  box-shadow: none !important;
+  border: none !important;
+  background-color: var(--vimium-clr-bg-primary) !important;
+  font-family: var(--vimium-font-family);
+}
+.hud-find {
+  background-color: var(--vimium-clr-white) !important;
+}
+#hud-find-input {
+  color: var(--vimium-clr-bg-primary) !important;
+}
