@@ -1,9 +1,11 @@
 fish_add_path /opt/homebrew/bin
+fish_add_path /opt/homebrew/sbin
 fish_add_path /usr/local/bin/ 
 
 set fish_greeting               # Supresses fish's intro message
 set TERM "xterm-256color"       # Sets the terminal type
 set -gx EDITOR nvim
+set -gx MANPAGER "nvim +Man!"
 
 ### Set either default emacs mode or vi mode ###
 function fish_user_key_bindings
@@ -56,23 +58,30 @@ function flatten
     -sOutputFile=$argv[2] $argv[1]
 end
 
+# Change working dir in fish to last dir in lf on exit (adapted from ranger).
+function lfcd --wraps="lf" --description="lf - Terminal file manager (changing directory on exit)"
+    # `command` is needed in case `lfcd` is aliased to `lf`.
+    # Quotes will cause `cd` to not change directory if `lf` prints nothing to stdout due to an error.
+    cd "$(command lf -print-last-dir $argv)"
+end
+
 
 ### Aliases ###
-alias clr='clear; echo; echo; seq 1 (tput cols) | sort -R | spark | lolcat; echo'
-alias skim='/Applications/Skim.app/Contents/MacOS/Skim'
-alias root='root -l'
-alias config='/opt/homebrew/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME'
+alias clr="clear; echo; echo; seq 1 (tput cols) | sort -R | spark | lolcat; echo"
+alias skim="/Applications/Skim.app/Contents/MacOS/Skim"
+alias root="root -l"
+alias config="/opt/homebrew/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
 
 # To launch the venv for python in Mac (all because of homebrew)
-alias pyenv='source ~/.pyvenv/bin/activate.fish; source /opt/homebrew/Cellar/root/6.38.04/bin/thisroot.fish'
+alias pyenv="source ~/.pyvenv/bin/activate.fish"
 
-alias rm='rm -i' # for safety reasons
+alias rm="rm -i" # for safety reasons
 
-alias ls='eza --color=always --long --git'
-alias lt='eza --color=always -a --tree --level=2 --git'
-alias la='eza -a --color=always --long --git'
-alias ll='eza -a -g --color=always --long --git'
-alias cd='z'
+alias ls="eza --color=always --long --git -s type"
+alias lt="eza --color=always -a --tree --level=2 --git -s type"
+alias la="eza -a --color=always --long --git -s type"
+alias ll="eza -a -g --color=always --long --git -s type"
+alias cd="z"
 
 ## Initializations ##
 # fzf keybindings
