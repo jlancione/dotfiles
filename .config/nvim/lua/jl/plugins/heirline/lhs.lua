@@ -157,6 +157,7 @@ local lhs = {
   help_file_name = HelpFileName,
   oil_current_dir = OilCurrentDir,
   terminal_sign = TerminalSign,
+  -- inactive_color = inactive_color,
 }
 
 

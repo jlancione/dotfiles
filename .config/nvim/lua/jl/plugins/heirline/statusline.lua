@@ -8,11 +8,6 @@ local LeftHandSide = require("jl.plugins.heirline.lhs").lhs
 local RightHandSide = require("jl.plugins.heirline.rhs").rhs
 
 local DefaultStatusLine = {
-  {
-    hl = {
-      bg = "orange", -- I don't see its effect
-    },
-  },
 
   LeftHandSide.file_name,
   Space,
@@ -22,6 +17,7 @@ local DefaultStatusLine = {
   RightHandSide.lsp_diagnostics,
   Space,
   RightHandSide.ruler,
+
 }
 
 local InactiveStatusLine = {
@@ -31,6 +27,11 @@ local InactiveStatusLine = {
   Space,
   LeftHandSide.file_flags,
   { provider = "%<" },
+  Align,
+  {
+    -- hl = { fg = require("jl.plugins.heirline.lhs").lhs.inactive_color },
+    provider = "-<< <><><><> >>-"
+  },
   Align,
 }
 
