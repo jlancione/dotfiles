@@ -1,3 +1,11 @@
+/* Copy in Custom search engines
+w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia
+y: https://www.youtube.com/results?search_query=%s Youtube
+b: https://search.brave.com/search?q=%s Brave
+upag: https://unaparolaalgiorno.it/significato/%s Una parola al giorno
+*/
+
+
 /* Copy in Vimium options, in CSS for Vimium UI */
 /* Tweaked version of https://github.com/chars-mc/vimium-horizon-theme/blob/main/styles.css */
 :root {
