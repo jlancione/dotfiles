@@ -75,13 +75,14 @@ alias config="/opt/homebrew/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
 # To launch the venv for python in Mac (all because of homebrew)
 alias pyenv="source ~/.pyvenv/bin/activate.fish"
 
-alias rm="rm -i" # for safety reasons
+# alias rm="rm -i" # for safety reasons
 
 alias ls="eza --color=always --long --git -s type"
 alias lt="eza --color=always -a --tree --level=2 --git -s type"
 alias la="eza -a --color=always --long --git -s type"
 alias ll="eza -a -g --color=always --long --git -s type"
 alias cd="z"
+alias kopia="/Applications/KopiaUI.app/Contents/Resources/server/kopia"
 
 ## Initializations ##
 # fzf keybindings
