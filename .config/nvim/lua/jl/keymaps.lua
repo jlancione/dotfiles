@@ -45,6 +45,7 @@ keymap("n", "<leader>dp", function() vim.diagnostic.jump({count=-1, float=true})
 keymap("n", "<leader>dn", function() vim.diagnostic.jump({count=1, float=true}) end, "Go to [N]ext diagnostic message")
 keymap("n", "<leader>de", vim.diagnostic.open_float, "Show diagnostic [E]rror message")
 keymap("n", "<leader>dq", vim.diagnostic.setloclist, "Open diagnostic [Q]uickfix list")
+keymap("n", "<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ctions")
 
 
 -- Visual --
