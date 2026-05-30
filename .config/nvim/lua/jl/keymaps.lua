@@ -101,6 +101,7 @@ keymap( "n", "<leader>x", function()
     vim.cmd.write()
     local bufname = vim.api.nvim_buf_get_name(0) -- works only if you trigger it from the project file, not from the terminal
     local filename = vim.fn.fnamemodify(bufname, ":r")
+    local fextension = vim.fn.fnamemodify(bufname, ":e")
     local current_win = vim.fn.win_getid()
 
     if not vim.api.nvim_win_is_valid(terminal_state.win) then
@@ -109,12 +110,18 @@ keymap( "n", "<leader>x", function()
         vim.fn.win_gotoid(terminal_state.win)
         launch_terminal()
      -- launch the virtual environment only if the terminal has never been opened, otherwise launch it manually
-        vim.fn.chansend(job_id, { "pyenv\r" })
+       if fextension == "py" then
+          vim.fn.chansend(job_id, { "pyenv\r" })
+        end
         vim.fn.win_gotoid(current_win)
       end
     end
 
-    vim.fn.chansend(job_id, { "python " .. filename .. ".py\r" })
+    if fextension == "py" then
+      vim.fn.chansend(job_id, { "python " .. filename .. ".py\r" })
+    elseif fextension == "tex" then
+      vim.fn.chansend(job_id, { "pdflatex " .. filename .. ".tex\r" })
+    end
 
 end,
   "E[X]ecute python script" )
