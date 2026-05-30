@@ -139,3 +139,21 @@ keymap( "i", "<M-C-S-D-=>", "<Nop>", "Unmap key" )
 keymap( "i", "<M-C-S-D-Bslash>", "<Nop>", "Unmap key" )
 keymap( "i", "<M-C-S-D-->", "<Nop>", "Unmap key" )
 keymap( "i", "<M-C-S-D-;>", "<Nop>", "Unmap key" )
+
+
+local transparency = false
+keymap( "n", "<leader>tran", function ()
+  if transparency == false then
+    vim.cmd([[
+      highlight Normal guibg=none
+      "highlight NonText guibg=none
+    ]])
+    transparency = true
+  else
+    vim.cmd([[
+      highlight Normal guibg=#1f1f28
+      "highlight NonText guibg=none
+    ]])
+    transparency = false
+  end
+end, "Toggle [TRAN]sparency")

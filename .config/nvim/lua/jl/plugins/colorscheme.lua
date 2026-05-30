@@ -1,3 +1,8 @@
-return { 
-  { "rebelot/kanagawa.nvim" }
+return {
+  {
+    "rebelot/kanagawa.nvim",
+    -- opts = {
+    --     transparent = true,
+    --   },
+  }
 }
