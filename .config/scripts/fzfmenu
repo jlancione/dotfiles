@@ -1,0 +1,19 @@
+#! /usr/bin/env bash
+
+NOTES_DIR="$HOME"/Documents/MaXi_fileZ/
+## Select with fzf, open in nvim, keep the shell session active when exiting nvim
+> /dev/null ghostty -e /opt/homebrew/bin/fish -C 'find '"$NOTES_DIR"" -name '*.tex'"' | fzf -m | tr "\n" " " | xargs nvim -O ; cd '"$NOTES_DIR"
+# Redirection to /dev/null to get rid of event-viewer like output from ghostty
+# Bash version
+# ghostty -e bash -c 'nvim -O $(find '"$NOTES_DIR"' -name *.tex | fzf -m | tr "\n" " ") ; bash'
+
+
+#################################
+## With a smarter window manager
+# DUMPOUT=/tmp/fzfmenu.out
+## open as floating (Spotlight-bar style)
+## By substituting NOTES_DIR whith stdin this becomes the Spotlight bar
+# ghostty -e bash -c 'find '"$NOTES_DIR"" -name '*.tex'"' | fzf -m | tr "\n" " "> '"$DUMPOUT"
+
+## Open
+# ghostty -e /opt/homebrew/bin/fish -C 'cat '"$DUMPOUT"' | xargs nvim -O ; cd '"$NOTES_DIR"
