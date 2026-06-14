@@ -8,15 +8,17 @@ return {
         library = {
           -- Load luvit types when the `vim.uv` word is found
           { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-        },
+        }
       },
     },
     config = function()
 
       vim.lsp.enable("lua_ls")
+      vim.lsp.enable("bashls")
       vim.lsp.enable("texlab")
       vim.lsp.enable("clangd")
       vim.lsp.enable("basedpyright")
+      -- vim.lsp.enable("harper_ls")
       -- vim.lsp.set_log_level("debug")
       vim.diagnostic.config({ virtual_text = true })
 
