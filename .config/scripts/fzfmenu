@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-NOTES_DIR="$HOME"/Documents/MaXi_fileZ/
+NOTES_DIR="$HOME"/Documents/Uni/MasterThesis/Notes
 ## Select with fzf, open in nvim, keep the shell session active when exiting nvim
 > /dev/null ghostty -e /opt/homebrew/bin/fish -C 'find '"$NOTES_DIR"" -name '*.tex'"' | fzf -m | tr "\n" " " | xargs nvim -O ; cd '"$NOTES_DIR"
 # Redirection to /dev/null to get rid of event-viewer like output from ghostty
