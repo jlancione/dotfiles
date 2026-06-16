@@ -2,18 +2,57 @@
 
 NOTES_DIR="$HOME"/Documents/Uni/MasterThesis/Notes
 ## Select with fzf, open in nvim, keep the shell session active when exiting nvim
-> /dev/null ghostty -e /opt/homebrew/bin/fish -C 'find '"$NOTES_DIR"" -name '*.tex'"' | fzf -m | tr "\n" " " | xargs nvim -O ; cd '"$NOTES_DIR"
-# Redirection to /dev/null to get rid of event-viewer like output from ghostty
+# > /dev/null ghostty -e /opt/homebrew/bin/fish -C 'find '"$NOTES_DIR"" -name '*.tex'"' | fzf -m | tr "\n" " " | xargs nvim -c "cd "'"$NOTES_DIR"' -O ; cd '"$NOTES_DIR"
+# # Redirection to /dev/null to get rid of event-viewer like output from ghostty
 # Bash version
 # ghostty -e bash -c 'nvim -O $(find '"$NOTES_DIR"' -name *.tex | fzf -m | tr "\n" " ") ; bash'
 
+## Beautified version
+# NOTESFILES=$(find "${NOTES_DIR}" -name '*.tex')
+## the subshell in MATCH invokes fzf that runs interactively, so we need a terminal emulator. Hence the script is launch with
+## open -na Ghostty.app --args -e
+# MATCH=$(basename ${NOTESFILES} | fzf -m | sed -e ':a' -e '$!N' -e '$!ba' -e 's/\n/ -e /g;s/^/-e /')
+#
+# > /dev/null ghostty -e bash -c 'basename '"${NOTESFILES}"" | fzf -m | sed -e ':a' -e '$!N' -e '$!ba' -e 's/\n/ -e /g;s/^/-e /' > /tmp/fzfmenu.out"
+## explanation for sed command is here, @Using sed for conditional joining
+## https://www.systutorials.com/in-bash-script-how-to-join-multiple-lines-from-a-file/
+# MATCHEDNOTESPATH=$(grep ${MATCH} <<< "${NOTESFILES}" | tr "\n" " ")
+# > /dev/null ghostty -e /opt/homebrew/bin/fish -C 'cd '"${NOTES_DIR}"'; nvim -O '"${MATCHEDNOTESPATH}"
 
 #################################
 ## With a smarter window manager
-# DUMPOUT=/tmp/fzfmenu.out
+DUMPOUT=/tmp/fzfmenu.out
+# find "${NOTES_DIR}" -name '*.tex' | tr "\n" " "
+# find "${NOTES_DIR}" -name '*.tex' | xargs basename
 ## open as floating (Spotlight-bar style)
 ## By substituting NOTES_DIR whith stdin this becomes the Spotlight bar
-# ghostty -e bash -c 'find '"$NOTES_DIR"" -name '*.tex'"' | fzf -m | tr "\n" " "> '"$DUMPOUT"
+# ghostty -e bash -c 'echo '"${NOTESFILES}"
+
+## This guy works as intended
+# sed 's|/[A-Za-z0-9/_]*/||' <<< "${NOTESFILES}"
+# ghostty -e bash -c "sed 's|/[A-Za-z0-9/_]*/||' <<< "'"$1" | fzf -m > "$2"' _ "${NOTESFILES}" "$DUMPOUT"
+# ghostty -e bash -c "sed 's|/[A-Za-z0-9/_]*/||' <<< "'"$1"' _ "${NOTESFILES}"
+
+## The actual fzfmenu starts from the fzf invocation (we are still missing the formatting, but it requires a smarter wm)
+> /dev/null ghostty -e bash -c "find $NOTES_DIR -name '*.tex' | fzf -m --delimiter=/ --with-nth=-1 | tr '\n' ' ' > $DUMPOUT"
+## Open selection
+> /dev/null ghostty -e /opt/homebrew/bin/fish -C "cd $NOTES_DIR; nvim -O $(head $DUMPOUT)"
+
+# ghostty -e bash -c "sed 's|/[A-Za-z0-9/_]*/||' <<< ""${NOTESFILES}"' | fzf -m > '"$DUMPOUT"
+# > /dev/null ghostty -e bash -c 'basename <<< '"${NOTESFILES}"' | fzf -m > '"$DUMPOUT"
+# > /dev/null ghostty -e /opt/homebrew/bin/fish -C 'cd '"$NOTES_DIR"'; grep -f '"$DUMPOUT"' <<< '"$NOTESFILES"' | xargs nvim -O'
 
 ## Open
 # ghostty -e /opt/homebrew/bin/fish -C 'cat '"$DUMPOUT"' | xargs nvim -O ; cd '"$NOTES_DIR"
+
+
+## Cosa abbiamo imparato (mindset & bird's view)
+## Visualizza bene il pipe che ti interessa, scegli gli strumenti (ad alto livello) ie cercare (find) selezionare da lista (fzf)
+## tieni a mente che sono strumenti potenti, scritti da gente intelligente
+## 1a di buttarti in arzigogoli, guarda bene se sono capaci di realizzare qlo che ti interessa
+
+## Cosa abbiamo imparato (technicalities)
+## basename non è pensato per lavorare su una lista arbitraria di file (comportamento inatteso che strumenti #i possono gestire in modo #o),
+## per applicarlo a ogni singolo elemento, xargs -n1 basename
+## -exec di find si applica singolarmente a ciasc1a hit dla ricerca
+## awk sarebbe stata un'altra strada percorribile (capace di mostrare solo un pezzo e restituire l'intera riga)
