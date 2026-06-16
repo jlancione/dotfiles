@@ -35,8 +35,10 @@ DUMPOUT=/tmp/fzfmenu.out
 
 ## The actual fzfmenu starts from the fzf invocation (we are still missing the formatting, but it requires a smarter wm)
 > /dev/null ghostty -e bash -c "find $NOTES_DIR -name '*.tex' | fzf -m --delimiter=/ --with-nth=-1 | tr '\n' ' ' > $DUMPOUT"
-## Open selection
-> /dev/null ghostty -e /opt/homebrew/bin/fish -C "cd $NOTES_DIR; nvim -O $(head $DUMPOUT)"
+## Open selection if not empty
+if [[ -s $DUMPOUT ]]; then
+  > /dev/null ghostty -e /opt/homebrew/bin/fish -C "cd $NOTES_DIR; nvim -O $(head $DUMPOUT)"
+fi
 
 # ghostty -e bash -c "sed 's|/[A-Za-z0-9/_]*/||' <<< ""${NOTESFILES}"' | fzf -m > '"$DUMPOUT"
 # > /dev/null ghostty -e bash -c 'basename <<< '"${NOTESFILES}"' | fzf -m > '"$DUMPOUT"
