@@ -85,8 +85,11 @@ alias cd="z"
 alias kopia="/Applications/KopiaUI.app/Contents/Resources/server/kopia"
 
 ## Initializations ##
-# fzf keybindings
+# fzf keybindings and defaults
 fzf --fish | source
+# find key/event binding possibilities in man fzf
+set FZF_DEFAULT_OPTS "--bind=ctrl-n:up,ctrl-p:down"
+
 
 zoxide init fish | source
 starship init fish | source
