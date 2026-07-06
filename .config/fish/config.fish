@@ -1,6 +1,8 @@
 fish_add_path /opt/homebrew/bin
 fish_add_path /opt/homebrew/sbin
 fish_add_path /usr/local/bin/ 
+fish_add_path /Users/jacopolancione/.bin
+fish_add_path /Users/jacopolancione/.tmuxifier/bin/
 
 set fish_greeting               # Supresses fish's intro message
 set TERM "xterm-256color"       # Sets the terminal type
@@ -92,4 +94,5 @@ set FZF_DEFAULT_OPTS "--bind=ctrl-n:up,ctrl-p:down"
 
 
 zoxide init fish | source
+eval (tmuxifier init - fish)
 starship init fish | source

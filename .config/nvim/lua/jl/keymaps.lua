@@ -83,7 +83,7 @@ local function launch_terminal()
   vim.fn.chansend(job_id, { "fish_default_key_bindings && clear\r" }) -- \r stands for <CR>
 end
 
-local tmux_pane_id = nil
+local tmux_pane_id = "foo"
 
 keymap( {"n", "t"}, "<leader>tt", function()
     if not vim.api.nvim_win_is_valid(terminal_state.win) then
@@ -133,7 +133,8 @@ keymap( "n", "<leader>x", function()
       vim.fn.chansend(job_id, {run_command .. "\r"})
 
     elseif os.getenv("TMUX") then
-      if tmux_pane_id == nil then
+      vim.fn.system("tmux has-session -t " .. tmux_pane_id) -- we are interested in its error code, caught in v:shell_error
+      if vim.v.shell_error ~=0 then
         tmux_pane_id = vim.fn.system("tmux split-window -vdP -l 10 -F '#{pane_id}'")
         tmux_pane_id = string.gsub(tmux_pane_id, "\n$", "") -- discard trailing \n
 
