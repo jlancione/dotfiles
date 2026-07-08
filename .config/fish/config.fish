@@ -73,6 +73,8 @@ alias clr="clear; echo; echo; seq 1 (tput cols) | sort -R | spark | lolcat; echo
 alias skim="/Applications/Skim.app/Contents/MacOS/Skim"
 alias root="root -l"
 alias config="/opt/homebrew/bin/git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
+alias wiki="nvim +'WikiIndex'"
+alias journal="nvim +'WikiJournal'"
 
 # To launch the venv for python in Mac (all because of homebrew)
 alias pyenv="source ~/.pyvenv/bin/activate.fish"

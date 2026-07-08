@@ -86,15 +86,17 @@ end
 local tmux_pane_id = "foo"
 
 keymap( {"n", "t"}, "<leader>tt", function()
-    if not vim.api.nvim_win_is_valid(terminal_state.win) then
-      terminal_state = create_split(terminal_state)
-      vim.fn.win_gotoid(terminal_state.win)
-      if vim.bo[terminal_state.buf].buftype ~= "terminal" then
-        launch_terminal()
+    if not os.getenv("TMUX") then
+      if not vim.api.nvim_win_is_valid(terminal_state.win) then
+        terminal_state = create_split(terminal_state)
+        vim.fn.win_gotoid(terminal_state.win)
+        if vim.bo[terminal_state.buf].buftype ~= "terminal" then
+          launch_terminal()
+        end
+        vim.cmd.startinsert()
+      else
+        vim.api.nvim_win_hide(terminal_state.win)
       end
-      vim.cmd.startinsert()
-    else
-      vim.api.nvim_win_hide(terminal_state.win)
     end
   end,
   "[T]oggle [T]erminal" )
