@@ -3,16 +3,21 @@ macos-window-shadow = false
 macos-option-as-alt = left
 
 quit-after-last-window-closed = true
+resize-overlay = never
 
-working-directory = ~/
+working-directory = home
+window-inherit-working-directory = false
+
+gtk-single-instance = true
 
 window-padding-x = 6
-window-padding-y = 3
+window-padding-y = 0
 
 font-size = 13
 term = xterm-256
 bold-color = bright
 cursor-color = #528bff
+background-opacity = 0.8
 
 # normal
 palette = 0=#3B4252
