@@ -5,9 +5,10 @@ PORT=8000
 cd ~/wiki
 ## pyenv alias
 source ~/.pyvenv/bin/activate
-(python -m http.server "$PORT") &
+## Avoid clutter, redirect stdout e stderr
+python -m http.server "$PORT" > /dev/null 2>&1 &
 ## open is for MacOS
-(open -a LibreWolf localhost:"$PORT") &
+open -a LibreWolf localhost:"$PORT" &
 
 sleep 1
 ## Manage user interaction
