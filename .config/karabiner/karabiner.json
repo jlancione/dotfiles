@@ -669,7 +669,7 @@
                                     "key_code": "m",
                                     "modifiers": { "mandatory": ["command"] }
                                 },
-                                "to": [{ "shell_command": "/bin/bash ~/.config/scripts/mute.sh" }],
+                                "to": [{ "shell_command": "/bin/bash ~/.bin/mute" }],
                                 "type": "basic"
                             },
                             {
