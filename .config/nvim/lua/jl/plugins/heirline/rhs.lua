@@ -1,6 +1,6 @@
 local conditions = require("heirline.conditions")
-local utils = require("heirline.utils")
-local Space = { flexible = 1, { provider = " " }, { provider = "" } }
+-- local utils = require("heirline.utils")
+-- local Space = { flexible = 1, { provider = " " }, { provider = "" } }
 
 -- StatusLine RIGHT HAND SIDE --
 
@@ -20,6 +20,7 @@ local Ruler = {
   }
 }
 
+-- Lazy Pending Updates
 local lazy_status = require("lazy.status")
 local LazyStatus = {
   condition = lazy_status.has_updates,
@@ -27,7 +28,28 @@ local LazyStatus = {
   hl = { fg = "blue" },
 }
 
+-- Git repo
+local Git = {
+  condition = function()
+    vim.fn.system("git rev-parse --is-inside-work-tree")
+    -- catch the exit code of previous command
+    if vim.v.shell_error == 0 then
+      return true
+    else
+      return false
+    end
+  end,
 
+  provider = function()
+    local branch_name = vim.fn.system("git branch --show-current")
+    branch_name = string.gsub(branch_name, "\n$", "") -- discard trailing \n
+
+    return branch_name .. " "
+  end,
+  hl = { fg = "purple" },
+}
+
+-- LSP
 -- local LSPActive = {
 --     condition = conditions.lsp_attached,
 --     update = {"LspAttach", "LspDetach"},
@@ -36,7 +58,6 @@ local LazyStatus = {
 --     provider = " [LSP]",
 --     hl = { fg = "green", bold = true },
 -- }
-
 
 -- Set custom icons
 vim.diagnostic.config({
@@ -107,6 +128,7 @@ local RhsBlock = {
   -- LSPActive,
   lazy = LazyStatus,
   ruler = Ruler,
+  git = Git,
 }
 
 return { rhs = RhsBlock }

@@ -16,6 +16,8 @@ local DefaultStatusLine = {
   RightHandSide.lazy,
   RightHandSide.lsp_diagnostics,
   Space,
+  RightHandSide.git,
+  Space,
   RightHandSide.ruler,
 
 }

@@ -1,5 +1,5 @@
 local conditions = require("heirline.conditions")
-local utils = require("heirline.utils")
+-- local utils = require("heirline.utils")
 local Space = { flexible = 1, { provider = " " }, { provider = "" } }
 
 local active_color = "yellow"
@@ -16,7 +16,7 @@ local FileIcon = {
     local icon, mini_icon_color = require("mini.icons").get("extension", extension)
     self.icon = icon
     -- eg. mini_icon_color = "MiniIconYellow", we want "yellow"
-    self.icon_color = string.lower(string.sub(mini_icon_color,10)) 
+    self.icon_color = string.lower(string.sub(mini_icon_color,10))
 
   end,
   provider = function(self)
@@ -115,7 +115,7 @@ local FileType = {
   provider = function()
     if vim.bo.filetype ~= "" then
       return string.upper(vim.bo.filetype)
-    else 
+    else
       return string.upper(vim.bo.buftype)
     end
   end,
@@ -132,23 +132,6 @@ local OilCurrentDir = {
   hl = { fg = "yellow" },
 }
 
--- The following relies on gitsigns
--- local Git = {
---   condition = conditions.is_git_repo,
---
---   init = function(self)
---     self.status_dict = vim.b.gitsigns_status_dict
---     self.has_changes = self.status_dict.added ~= 0 or self.status_dict.removed ~= 0 or self.status_dict.changed ~= 0
---   end,
---   hl = { fg = "blue" },
---
---   {   -- git branch name
---     provider = function(self)
---       return " " .. self.status_dict.head
---     end,
---     hl = { bold = true }
---   },
--- }
 
 local lhs = {
   file_name = FileNameBlock,
