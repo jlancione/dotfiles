@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+tmuxifier load-session $1

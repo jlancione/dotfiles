@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+PORT=8000
+
+cd ~/wiki
+## pyenv alias
+source ~/.pyvenv/bin/activate
+(python -m http.server "$PORT") &
+## open is for MacOS
+(open -a LibreWolf localhost:"$PORT") &
+
+sleep 1
+## Manage user interaction
+while true; do
+    read -p "Done reading? [y/n] " input
+    [[ "$input" == "y" ]] || [[ $input == "" ]] && break
+done
+echo "See ya!"
+
+## List process running on PORT, get PID
+SERVERPID=$(lsof -i ":$PORT" | grep Python | awk '{print $2}')
+kill "$SERVERPID"
