@@ -1,16 +1,16 @@
--- Autocommands --
--- They run each time a condition is met. See :help lua-guide-autocommands
+-- See :help lua-guide-autocommands
 
-vim.api.nvim_create_autocmd("User", {
-  pattern = "WikiBufferInitialized",  -- wiki.vim User event
-  callback = function()
-    vim.api.nvim_set_current_dir(vim.fn.expand("%:p:h"))    
-    -- % Current file name, :p expand to full path, :h last path component removed (head)
-  end,
-})
-
--- Start treesitter highlight, to render markdown link appropriately
+-- Start treesitter highlight, e.g. to render markdown link appropriately
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "markdown" },
+  pattern = { "markdown", "latex", },
   callback = function() vim.treesitter.start() end,
 })
+
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = { "python" },
+--   callback = function ()
+--     vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
+--   end,
+-- })
+
+-- One autocommand is defined in heirline, look in heirline/rhs.lua
