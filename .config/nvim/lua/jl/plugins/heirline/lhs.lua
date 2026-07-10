@@ -45,6 +45,15 @@ local FileName = {
   flexible = 5, -- it is the priority, higher: last to contract, first to expand
   {
     provider = function(self)
+      -- Beautify
+      -- only page name of wiki
+      local hfilename = vim.fn.fnamemodify(self.filename, ":h:t")
+      if hfilename == "wiki" then
+        return vim.fn.fnamemodify(self.lfilename, ":p:t:r")
+      elseif hfilename == "journal" then
+        -- journal/date
+        return "journal/" .. vim.fn.fnamemodify(self.lfilename, ":t:r")
+      end
       return self.lfilename
     end,
   },
