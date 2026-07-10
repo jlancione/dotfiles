@@ -5,7 +5,9 @@ fish_add_path /Users/jacopolancione/.bin
 fish_add_path /Users/jacopolancione/.tmuxifier/bin/
 
 set fish_greeting               # Supresses fish's intro message
-set TERM "xterm-256color"       # Sets the terminal type
+if not set -q TERM
+  set TERM "xterm-256color"       # Sets the terminal type, if not already set
+end
 set -gx EDITOR nvim
 set -gx MANPAGER "nvim +Man!"
 
