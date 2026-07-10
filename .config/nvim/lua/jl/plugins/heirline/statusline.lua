@@ -1,5 +1,5 @@
 local conditions = require("heirline.conditions")
-local utils = require("heirline.utils")
+-- local utils = require("heirline.utils")
 
 local Space = { flexible = 1, { provider = " " }, { provider = "" } }
 local Align = { flexible = 10, { provider = "%=" }, { provider = "" } }
