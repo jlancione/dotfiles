@@ -73,9 +73,19 @@ return {
       telescope.load_extension( "fzf" )
       telescope.load_extension( "bibtex" )
 
+      -- Search the wiki when in wiki page
+      local live_grep_tweaked = function ()
+        local hfilename = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":h:t")
+        if hfilename == "wiki" or hfilename == "journal" then
+          builtin.live_grep({ search_dirs = { "~/wiki", } })
+        else
+          builtin.live_grep()
+        end
+      end
+
       -- keymaps
       local keymap = vim.keymap.set
-      keymap("n", "<leader>F", builtin.live_grep,   { desc = "[F]ind Text"  })
+      keymap("n", "<leader>F", live_grep_tweaked,   { desc = "[F]ind Text"  })
       keymap("n", "<leader>b", builtin.buffers,     { desc = "[B]uffers"    })
       keymap("n", "<leader>f", builtin.find_files,  { desc = "Find [F]iles" })
 
