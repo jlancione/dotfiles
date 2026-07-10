@@ -37,9 +37,10 @@ local branch_name
 -- At Refresh the order is: condition - update - init - hl - on_click - provider
 -- but the event listener is update and not condition
 -- reevaluating the shell commands at refresh would considereably slow down nvim
-vim.api.nvim_create_autocmd("BufEnter", {
+vim.api.nvim_create_autocmd({"VimEnter", "BufEnter"}, {
   pattern = "*",
-  callback = function ()
+  -- these are heavy commands (would cause slow startup) postpone them to main loop
+  callback = vim.schedule_wrap(function ()
     -- get path to dir of current buf
     local bufdir = vim.fn.fnamemodify(vim.fn.bufname(), ":p:h")
     vim.fn.system("git -C " .. bufdir .. " rev-parse --is-inside-work-tree")
@@ -53,7 +54,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
     branch_name = vim.fn.system("git -C " .. bufdir .. " branch --show-current")
     branch_name = string.gsub(branch_name, "\n$", "") -- discard trailing \n
     -- print(is_git)
-  end,
+  end),
 })
 
 -- autocommand, at bufenter update is_git and branch_name
