@@ -47,7 +47,7 @@ set rtp+=/opt/homebrew/opt/fzf
 
 " APPEARANCE ------------------------------------------------------------- {{{
 
-colorscheme retrobox
+colorscheme retrobox " Searches retrobox.vim in ~/.vim/colors
 set background=dark
 
 set number          " Add numbers on the left
