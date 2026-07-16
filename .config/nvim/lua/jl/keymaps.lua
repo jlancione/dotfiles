@@ -9,6 +9,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Normal --
+keymap( "n", "<leader>w", ":w<CR>", "[W]rite" )
 -- File navigation
 keymap( "n", "<C-d>", "<C-d>zz", "Scroll [D]own" )
 keymap( "n", "<C-u>", "<C-u>zz", "Scroll [U]p"   )
